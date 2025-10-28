@@ -20,7 +20,7 @@
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
     "@reduxjs/toolkit": "^2.2.5",
-    "@storybook/react-native": "^7.6.20",
+    "@storybook/react-native": "^7.6.11",
     "@types/react": "^17.0.80",
     "date-fns": "^3.6.0",
     "numbro": "^2.5.0",
