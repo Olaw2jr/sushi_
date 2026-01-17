@@ -1,4 +1,5 @@
 const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
+const { withStorybook } = require('@storybook/react-native/metro/withStorybook');
 
 /**
  * Metro configuration
@@ -6,6 +7,11 @@ const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
  *
  * @type {import('@react-native/metro-config').MetroConfig}
  */
-const config = {};
+const defaultConfig = getDefaultConfig(__dirname);
 
-module.exports = mergeConfig(getDefaultConfig(__dirname), config);
+const config = withStorybook(defaultConfig);
+
+// Ensure the experimental feature is enabled on the final configuration object
+config.transformer.unstable_allowRequireContext = true;
+
+module.exports = config;

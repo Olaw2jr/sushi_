@@ -1,0 +1,46 @@
+name: android build pipeline
+on:
+  push:
+    branches:
+      - main
+jobs:
+  setup-node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install npm dependencies
+        run: npm ci
+  generate-aab:
+    needs: setup-node
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - name: Setup keystore
+        run: |
+          mkdir -p ~/.gradle/
+          echo "${{secrets.GRADLE_PROPERTIES}}" > ~/.gradle/gradle.properties
+          echo "${{secrets.ANDROID_KEYSTORE}}" > android/app/sushi.keystore.encoded
+          base64 -d android/app/sushi.keystore.encoded > android/app/sushi.keystore
+      - name: Install npm dependencies
+        run: npm ci
+      - name: Build Release AAB
+        run: npm run android:release
+      - name: Upload AAB Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-release.aab
+          path: android/app/build/outputs/bundle/release/
+  generate-apk:
+    needs: setup-node
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - name: Install npm dependencies
+        run: npm ci
+      - name: Build Debug APK
+        run: npm run android:debug
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-debug.apk
+          path: android/app/build/outputs/apk/debug/
