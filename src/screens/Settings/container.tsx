@@ -29,7 +29,7 @@ const SettingsContainer = (props: SettingsPublicProps) => {
   const selectedLanguage = language.selected;
 
   const setSelectedLanguage = (payload: string) => {
-    dispatch(setSelectedLanguageAction(payload));
+    dispatch(setSelectedLanguageAction(payload as any));
   };
 
   const generatedProps: SettingsPrivateProps = {

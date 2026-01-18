@@ -9,6 +9,8 @@ const en_US = {
   // ADD ACCOUNT
   ADD_ACCOUNT: 'Add Account',
   ACCOUNT_NAME: 'Account Name',
+  ACCOUNT_TYPE: 'Account Type',
+  ON_BUDGET: 'On Budget',
   INITIAL_AMOUNT: 'Initial Amount',
   CREATE_ACCOUNT: 'Create Account',
 
@@ -84,6 +86,15 @@ const en_US = {
   INCOME: 'Income',
   EXPENSES: 'Expenses',
   EXPORT_SUCCESS: 'Transactions exported to {{fileName}}',
+
+  // BUDGET
+  BUDGET_EMPTY_TITLE: 'No Budget Categories Yet',
+  BUDGET_EMPTY_DESCRIPTION: 'Create categories to start planning your spending.',
+  CREATE_CATEGORY: 'Create Category',
+  HOME: "Home",
+  BUDGET: "Budget",
+  ACCOUNTS: "Accounts",
+  PAYEE: "Payee",
 };
 
 export default en_US;

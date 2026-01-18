@@ -72,6 +72,14 @@ const uk_UA: Translation = {
 
   // Insights
   INSIGHTS: 'Статистика',
+  // BUDGET
+  BUDGET_EMPTY_TITLE: "No Budget Categories Yet",
+  BUDGET_EMPTY_DESCRIPTION: "Create categories to start planning your spending.",
+  CREATE_CATEGORY: "Create Category",
+  HOME: "Home",
+  BUDGET: "Budget",
+  ACCOUNTS: "Accounts",
+  PAYEE: "Payee",
 };
 
 export default uk_UA;

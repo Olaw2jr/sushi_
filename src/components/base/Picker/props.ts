@@ -5,6 +5,7 @@ import { TranslationKey } from 'types/Translation';
 
 export interface PickerPrivateProps {
   containerStyle?: ViewStyle;
+  className?: string;
   theme?: Theme;
   options: {
     label: string;

@@ -68,6 +68,14 @@ const de_DE: Translation = {
   THEME: 'Thema',
   THEME_LIGHT: 'Hell',
   THEME_DARK: 'Dunkel',
+  // BUDGET
+  BUDGET_EMPTY_TITLE: "No Budget Categories Yet",
+  BUDGET_EMPTY_DESCRIPTION: "Create categories to start planning your spending.",
+  CREATE_CATEGORY: "Create Category",
+  HOME: "Home",
+  BUDGET: "Budget",
+  ACCOUNTS: "Accounts",
+  PAYEE: "Payee",
 };
 
 export default de_DE;

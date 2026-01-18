@@ -1,14 +1,15 @@
 import React from 'react';
 import numbro from 'numbro';
-import { ScrollView, View, StatusBar, TouchableOpacity } from 'react-native';
+import { ScrollView, View, StatusBar, TouchableOpacity, Text as RNText } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Uniwind } from 'uniwind';
 import useStyles from './styles';
 import { SettingsProps } from './props';
-import { Back } from 'components/base/SVG';
-import Picker from 'components/base/Picker';
-import { TRANSLATIONS } from 'constants/translations';
+import { ArrowLeft } from 'lucide-react-native';
 import Text from 'components/base/Text';
+import Picker from 'components/base/Picker';
 import useTranslationKey from 'utils/hooks/useTranslationKey';
+import { TRANSLATIONS } from 'constants/translations';
 
 const LANGUAGE_OPTIONS = Object.keys(TRANSLATIONS).map((value) => {
   const typedValue = value as keyof typeof TRANSLATIONS;
@@ -49,18 +50,18 @@ const SettingsView = (props: SettingsProps) => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.BACKGROUND }]}>
       <StatusBar
         backgroundColor={colors.BACKGROUND}
         barStyle={colors.STATUS_BAR}
       />
-      <View style={styles.header}>
+      <View style={[styles.header, { borderBottomColor: colors.BORDER, backgroundColor: colors.BACKGROUND + 'CC' }]}>
         <TouchableOpacity
-          style={styles.headerBackAction}
+          style={styles.headerLeftAction}
           onPress={() => {
             navigation.goBack();
           }}>
-          <Back fill={colors.PRIMARY_TEXT} width={24} height={24} />
+          <ArrowLeft color={colors.PRIMARY_TEXT} size={24} />
         </TouchableOpacity>
         <Text
           containerStyle={styles.headerTitleContainer}
@@ -70,12 +71,12 @@ const SettingsView = (props: SettingsProps) => {
         />
       </View>
       <View style={styles.content}>
-        <ScrollView style={styles.contentScroll}>
+        <ScrollView contentContainerStyle={styles.contentScroll}>
           <Picker
-            // containerStyle={styles.inputContainer}
+            containerStyle={styles.inputContainer}
             translationKey="CURRENCY"
             selectedValue={currencyLanguage}
-            onSelect={(value) => setCurrencyLanguage(value)}
+            onSelect={(value) => value && setCurrencyLanguage(value)}
             options={currencyLanguageOptions}
             theme={theme}
           />
@@ -84,20 +85,30 @@ const SettingsView = (props: SettingsProps) => {
             containerStyle={styles.inputContainer}
             translationKey="LANGUAGE"
             selectedValue={selectedLanguage}
-            onSelect={(value) => setSelectedLanguage(value)}
+            onSelect={(value) => value && setSelectedLanguage(value)}
             options={LANGUAGE_OPTIONS}
             theme={theme}
           />
 
           <Picker
-            containerStyle={styles.inputContainer}
+            containerStyle={styles.textFieldContainer}
             translationKey="THEME"
             selectedValue={baseTheme}
             onSelect={(value) => {
               // @ts-ignore
               setBaseTheme(value);
+              // Sync with Uniwind for CSS variable theming
+              if (value === 'Dark') {
+                Uniwind.setTheme('dark');
+              } else {
+                Uniwind.setTheme('light');
+              }
             }}
             options={[
+              {
+                label: 'Sushi 2 (Modern)',
+                value: 'SUSHI_2',
+              },
               {
                 label: TEXT_THEME_LIGHT,
                 value: 'Light',

@@ -5,6 +5,7 @@ import { TranslationKey } from 'types/Translation';
 
 export interface TextInputPrivateProps {
   containerStyle?: ViewStyle;
+  className?: string;
   theme?: Theme;
   style?: ViewStyle;
   label?: string;

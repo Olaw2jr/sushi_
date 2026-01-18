@@ -3,7 +3,7 @@ import { THEME_OPTION } from 'store/theme';
 import { MainStackParamList } from 'types/Route';
 
 export interface SettingsPublicProps
-  extends NativeStackScreenProps<MainStackParamList, 'CREATE_WALLET'> {}
+  extends NativeStackScreenProps<MainStackParamList, 'SETTINGS'> {}
 
 export interface SettingsPrivateProps {
   baseTheme: string;

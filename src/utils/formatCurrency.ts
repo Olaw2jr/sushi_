@@ -7,7 +7,10 @@ export const formatCurrency = (number: number, format?: Format) => {
   if (format?.language) {
     numbro.setLanguage(format?.language);
   }
-  return numbro(number).formatCurrency({
+  
+  const safeNumber = isNaN(number) ? 0 : number;
+
+  return numbro(safeNumber).formatCurrency({
     mantissa: 2,
     ...omit(['language'], format),
   });

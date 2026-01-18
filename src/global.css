@@ -1,0 +1,117 @@
+@import 'tailwindcss';
+@import 'uniwind';
+@source ".";
+
+/* ===========================================
+   SUSHI APP DESIGN LANGUAGE
+   Tailwind v4 + Uniwind for React Native
+   Using Uniwind theme variants
+   =========================================== */
+
+@layer theme {
+  :root {
+    /* ===== DARK THEME ===== */
+    @variant dark {
+      /* Primary Colors */
+      --color-primary: #e15f41;
+      --color-primary-foreground: #fafafa;
+      
+      /* Semantic Colors */
+      --color-positive: #33d9b2;
+      --color-negative: #ff5252;
+      --color-destructive: #ff5252;
+      
+      /* Foreground (Text) */
+      --color-foreground: #fafafa;
+      --color-muted-foreground: #a3a3a3;
+      
+      /* Background & Surfaces */
+      --color-background: #1f1f1f;
+      --color-card: #262626;
+      --color-card-foreground: #f5f5f5;
+      --color-muted: #404040;
+      
+      /* Borders */
+      --color-border: #404040;
+      --color-input: #404040;
+      --color-ring: #e15f41;
+    }
+    
+    /* ===== LIGHT THEME ===== */
+    @variant light {
+      /* Primary Colors */
+      --color-primary: #e15f41;
+      --color-primary-foreground: #fafafa;
+      
+      /* Semantic Colors */
+      --color-positive: #218c74;
+      --color-negative: #b33939;
+      --color-destructive: #c44569;
+      
+      /* Foreground (Text) */
+      --color-foreground: #1f1f1f;
+      --color-muted-foreground: #595959;
+      
+      /* Background & Surfaces */
+      --color-background: #f5f5f5;
+      --color-card: #fafafa;
+      --color-card-foreground: #434343;
+      --color-muted: #e5e5e5;
+      
+      /* Borders */
+      --color-border: #d9d9d9;
+      --color-input: #d9d9d9;
+      --color-ring: #e15f41;
+    }
+  }
+}
+
+/* ===== SPACING & RADIUS ===== */
+@theme {
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+/* Container utilities */
+.container-screen {
+  flex: 1;
+  background-color: var(--color-background);
+}
+
+/* Card utilities */
+.card {
+  background-color: var(--color-card);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+}
+
+/* Text utilities */
+.text-title {
+  color: var(--color-foreground);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.text-body {
+  color: var(--color-card-foreground);
+  font-size: 16px;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background-color: var(--color-border);
+}

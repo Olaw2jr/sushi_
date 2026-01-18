@@ -30,10 +30,29 @@ const useStyles = (theme: Theme = DEFAULT_THEME) => {
       color: colors.SECONDARY_TEXT,
     },
     label: {
-      fontFamily: 'Heebo-SemiBold',
-      fontSize: 12,
+      fontFamily: 'Heebo-Medium',
+      fontSize: 10,
       textTransform: 'uppercase',
       letterSpacing: 1.5,
+      color: colors.SECONDARY_TEXT,
+    },
+    sectionTitle: {
+      fontFamily: 'Heebo-Bold',
+      fontSize: 11,
+      textTransform: 'uppercase',
+      letterSpacing: 1.5,
+      color: colors.SECONDARY_TEXT,
+    },
+    money: {
+      fontFamily: 'Heebo-Bold',
+      fontSize: 16,
+      letterSpacing: -0.5,
+      color: colors.PRIMARY_TEXT,
+    },
+    moneyLg: {
+      fontFamily: 'Heebo-Bold',
+      fontSize: 24,
+      letterSpacing: -1,
       color: colors.PRIMARY_TEXT,
     },
   });

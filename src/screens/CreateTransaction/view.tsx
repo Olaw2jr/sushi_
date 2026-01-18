@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Text from 'components/base/Text';
 import { ScrollView, View, StatusBar, TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import useStyles from './styles';
 import { CreateTransactionProps } from './props';
-import { Back } from 'components/base/SVG';
+import { ArrowLeft } from 'lucide-react-native';
 import {
   formatCategory,
   getCategorySuggestions,
@@ -17,53 +19,62 @@ import Picker from 'components/base/Picker';
 import Button from 'components/base/Button';
 import DatePicker from 'components/module/DatePicker';
 import TimePicker from 'components/module/TimePicker';
+import { TransactionStatus, TransactionKind, FlagColor } from 'constants/enums';
 
 const TRANSACTION_TYPES: {
   label: string;
   value: 'IN' | 'OUT';
 }[] = [
-  {
-    label: '-',
-    value: 'OUT',
-  },
-  {
-    label: '+',
-    value: 'IN',
-  },
+    {
+      label: '-',
+      value: 'OUT',
+    },
+    {
+      label: '+',
+      value: 'IN',
+    },
+  ];
+
+const STATUS_OPTIONS = Object.values(TransactionStatus).map(s => ({ label: s, value: s }));
+const KIND_OPTIONS = Object.values(TransactionKind).map(k => ({ label: k, value: k }));
+const FLAG_OPTIONS = [
+  { label: 'None', value: null },
+  ...Object.values(FlagColor).map(f => ({ label: f, value: f }))
 ];
 
 const CreateTransactionView = (props: CreateTransactionProps) => {
   const { navigation, createTransaction, wallets, transactions } = props;
   const { styles, theme, colors } = useStyles();
+  const categoriesState = useSelector((state: RootState) => state.categories);
+  const entitiesState = useSelector((state: RootState) => state.entities);
 
   const walletOptions = toWalletOptions(wallets);
+  const categoryOptions = Object.values(categoriesState.categories)
+    .filter(c => !c.isSystem)
+    .map(c => ({ label: c.name, value: c.id }));
+  
+  const entityOptions = Object.values(entitiesState).map(e => ({ label: e.name, value: e.id }));
 
-  const [category, setCategory] = useState('');
-
+  const [categoryId, setCategoryId] = useState<string | null>(null);
+  const [entityId, setEntityId] = useState<string | null>(null);
   const [sourceWalletId, setSourceWalletId] = useState<string | null>(null);
-  const [destinationWalletId, setDestinationWalletId] = useState<string | null>(
-    null,
-  );
+  const [destinationWalletId, setDestinationWalletId] = useState<string | null>(null);
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
   const [transactionType, setTransactionType] = useState<'IN' | 'OUT'>('OUT');
   const [paidAt, setPaidAt] = useState<Date | null>(new Date());
-
-  const categorySuggestions = getCategorySuggestions(transactions).filter(
-    (suggestion) => suggestion.toUpperCase().includes(category.toUpperCase()),
-  );
-
-  const walletIdSuggestions = getWalletSuggestions(transactions);
+  const [cleared, setCleared] = useState<TransactionStatus>(TransactionStatus.UNCLEARED);
+  const [kind, setKind] = useState<TransactionKind | null>(null);
+  const [flagColor, setFlagColor] = useState<FlagColor | null>(null);
 
   useEffect(() => {
-    if (category.toUpperCase() === 'TRANSFER') {
+    if (categoryId === 'transfer') {
       setTransactionType('OUT');
     }
-  }, [category]);
+  }, [categoryId]);
 
   useEffect(() => {
     if (walletOptions.length === 1) {
-      // do something
       setSourceWalletId(walletOptions[0].value);
     }
   }, [walletOptions]);
@@ -74,13 +85,13 @@ const CreateTransactionView = (props: CreateTransactionProps) => {
         backgroundColor={colors.BACKGROUND}
         barStyle={colors.STATUS_BAR}
       />
-      <View style={styles.header}>
+      <View style={[styles.header, { borderBottomWidth: 1, borderBottomColor: colors.BORDER }]}>
         <TouchableOpacity
-          style={styles.headerBackAction}
+          style={styles.headerLeftAction}
           onPress={() => {
             navigation.goBack();
           }}>
-          <Back fill={colors.PRIMARY_TEXT} width={24} height={24} />
+          <ArrowLeft color={colors.PRIMARY_TEXT} size={24} />
         </TouchableOpacity>
         <Text
           variant="title"
@@ -89,42 +100,28 @@ const CreateTransactionView = (props: CreateTransactionProps) => {
           translationKey="NEW_TRANSACTION"
         />
       </View>
-      <View style={styles.content}>
-        <ScrollView style={styles.contentScroll}>
-          <TextInput
+      <View style={{ flex: 1 }}>
+        <ScrollView contentContainerStyle={{ padding: 16 }}>
+          <Picker
             containerStyle={styles.inputContainer}
-            translationKey="CATEGORY"
-            value={category}
-            onChangeText={(text) => setCategory(text)}
+            label="Category"
+            selectedValue={categoryId || undefined}
+            onSelect={(value) => setCategoryId(value)}
+            options={[
+              { label: 'Transfer', value: 'transfer' },
+              ...categoryOptions
+            ]}
             theme={theme}
           />
 
-          <View style={styles.suggestionsContainer}>
-            {categorySuggestions.map((categorySuggestion) => (
-              <TouchableOpacity
-                key={categorySuggestion}
-                style={styles.suggestionsBadge}
-                onPress={() => {
-                  setCategory(categorySuggestion);
-                }}>
-                {categorySuggestion.toUpperCase() === 'TRANSFER' ? (
-                  <Text
-                    variant="label"
-                    style={styles.suggestionText}
-                    theme={theme}
-                    translationKey="TRANSFER"
-                  />
-                ) : (
-                  <TextView
-                    style={styles.suggestionText}
-                    variant="label"
-                    theme={theme}>
-                    {categorySuggestion}
-                  </TextView>
-                )}
-              </TouchableOpacity>
-            ))}
-          </View>
+          <Picker
+            containerStyle={styles.inputContainer}
+            label="Payee"
+            selectedValue={entityId || undefined}
+            onSelect={(value) => setEntityId(value)}
+            options={entityOptions}
+            theme={theme}
+          />
 
           <Picker
             containerStyle={styles.inputContainer}
@@ -135,25 +132,7 @@ const CreateTransactionView = (props: CreateTransactionProps) => {
             theme={theme}
           />
 
-          <View style={styles.suggestionsContainer}>
-            {walletIdSuggestions.map((id, index) => (
-              <TouchableOpacity
-                key={id}
-                style={styles.suggestionsBadge}
-                onPress={() => {
-                  setSourceWalletId(id);
-                }}>
-                <TextView
-                  style={styles.suggestionText}
-                  variant="label"
-                  theme={theme}>
-                  {wallets[id].label}
-                </TextView>
-              </TouchableOpacity>
-            ))}
-          </View>
-
-          {category.toUpperCase() === 'TRANSFER' && (
+          {categoryId === 'transfer' && (
             <Picker
               containerStyle={styles.inputContainer}
               translationKey="DESTINATION_ACCOUNT"
@@ -180,7 +159,7 @@ const CreateTransactionView = (props: CreateTransactionProps) => {
             theme={theme}
           />
 
-          {category.toUpperCase() !== 'TRANSFER' && (
+          {categoryId !== 'transfer' && (
             <View style={styles.transactionTypeContainer}>
               {TRANSACTION_TYPES.map(({ label, value }) => (
                 <TouchableOpacity
@@ -213,13 +192,40 @@ const CreateTransactionView = (props: CreateTransactionProps) => {
             theme={theme}
           />
 
+          <View style={{ flexDirection: 'row', gap: 12 }}>
+            <Picker
+              containerStyle={[styles.inputContainer, { flex: 1 }]}
+              label="Status"
+              selectedValue={cleared}
+              onSelect={(value) => setCleared(value as TransactionStatus)}
+              options={STATUS_OPTIONS}
+              theme={theme}
+            />
+            <Picker
+              containerStyle={[styles.inputContainer, { flex: 1 }]}
+              label="Flag"
+              selectedValue={flagColor || undefined}
+              onSelect={(value) => setFlagColor(value as FlagColor)}
+              options={FLAG_OPTIONS}
+              theme={theme}
+            />
+          </View>
+
+          <Picker
+            containerStyle={styles.inputContainer}
+            label="Transaction Kind"
+            selectedValue={kind || undefined}
+            onSelect={(value) => setKind(value as TransactionKind)}
+            options={KIND_OPTIONS}
+            theme={theme}
+          />
+
           <DatePicker
             containerStyle={styles.inputContainer}
             labelTranslationKey="TRANSACTION_DATE"
             startDate={paidAt}
             setStartDate={setPaidAt}
             defaultLabelTranslationKey="TRANSACTION_DATE"
-            hideActionButton
             theme={theme}
           />
           <TimePicker
@@ -233,9 +239,18 @@ const CreateTransactionView = (props: CreateTransactionProps) => {
         </ScrollView>
         <View style={styles.actionsContainer}>
           <Button
-            onPress={() =>
+            onPress={() => {
+              const selectedCategory = categoryId === 'transfer' 
+                ? { name: 'Transfer', id: null } 
+                : categoriesState.categories[categoryId || ''];
+              
+              const selectedEntity = entitiesState[entityId || ''];
+
               createTransaction({
-                category: formatCategory(category || 'Others'),
+                category: selectedCategory?.name || 'Others',
+                categoryId: selectedCategory?.id || null,
+                entityId: entityId,
+                payee: selectedEntity?.name || 'Others',
                 description: description || '',
                 amount:
                   parseFloat(
@@ -243,9 +258,13 @@ const CreateTransactionView = (props: CreateTransactionProps) => {
                   ) || 0,
                 sourceWalletId: sourceWalletId || '',
                 destinationWalletId,
+                cleared,
+                kind,
+                flagColor,
+                isTransfer: categoryId === 'transfer',
                 paidAt: (paidAt || new Date()).toISOString(),
-              })
-            }
+              });
+            }}
             translationKey="CREATE_TRANSACTION"
             theme={theme}
           />

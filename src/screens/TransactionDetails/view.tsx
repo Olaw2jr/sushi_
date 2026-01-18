@@ -4,7 +4,7 @@ import { View, StatusBar, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import useStyles from './styles';
 import { TransactionDetailsProps } from './props';
-import { Back, Delete, Edit } from 'components/base/SVG';
+import { ArrowLeft, Trash2, Pencil } from 'lucide-react-native';
 import AlertModal from 'components/module/AlertModal';
 import { formatCurrency } from 'utils/formatCurrency';
 import { formatDate } from 'utils/formatDate';
@@ -60,7 +60,7 @@ const TransactionDetailsView = (props: TransactionDetailsProps) => {
           onPress={() => {
             navigation.goBack();
           }}>
-          <Back fill={colors.PRIMARY_TEXT} width={24} height={24} />
+          <ArrowLeft color={colors.PRIMARY_TEXT} size={24} />
         </TouchableOpacity>
         <Text
           containerStyle={styles.headerTitleContainer}
@@ -75,14 +75,14 @@ const TransactionDetailsView = (props: TransactionDetailsProps) => {
               transactionId: transaction.id,
             });
           }}>
-          <Edit fill={colors.PRIMARY_TEXT} width={24} height={24} />
+          <Pencil color={colors.PRIMARY_TEXT} size={24} />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.headerRightAction}
           onPress={() => {
             setShowDelete(true);
           }}>
-          <Delete fill={colors.PRIMARY_TEXT} width={24} height={24} />
+          <Trash2 color={colors.PRIMARY_TEXT} size={24} />
         </TouchableOpacity>
       </View>
       <View style={styles.content}>
@@ -152,6 +152,38 @@ const TransactionDetailsView = (props: TransactionDetailsProps) => {
             {formatDate(transaction.paidAt)}
           </TextView>
         </View>
+        <View style={styles.detailCard}>
+          <TextView variant="label" theme={theme}>STATUS</TextView>
+          <TextView
+            variant="subtitle"
+            containerStyle={styles.detailCardValue}
+            theme={theme}>
+            {transaction.cleared}
+          </TextView>
+        </View>
+        {transaction.kind && (
+          <View style={styles.detailCard}>
+            <TextView variant="label" theme={theme}>KIND</TextView>
+            <TextView
+              variant="subtitle"
+              containerStyle={styles.detailCardValue}
+              theme={theme}>
+              {transaction.kind}
+            </TextView>
+          </View>
+        )}
+        {transaction.flagColor && (
+          <View style={styles.detailCard}>
+            <TextView variant="label" theme={theme}>FLAG</TextView>
+            <TextView
+              variant="subtitle"
+              containerStyle={styles.detailCardValue}
+              style={{ color: colors[transaction.flagColor as keyof typeof colors] || colors.PRIMARY_TEXT }}
+              theme={theme}>
+              {transaction.flagColor}
+            </TextView>
+          </View>
+        )}
         <View style={styles.detailCard}>
           <Text
             style={styles.detailCardHidden}

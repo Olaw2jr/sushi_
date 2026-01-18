@@ -21,6 +21,10 @@ import currencyReducer from './currency';
 import languageReducer from './language';
 import Migrations from './migration';
 import filtersReducer from './filters';
+import categoriesReducer from './categories';
+import budgetsReducer from './budgets';
+import entitiesReducer from './entities';
+import valuationsReducer from './valuations';
 
 const rootReducer = combineReducers({
   theme: themeReducer,
@@ -29,15 +33,19 @@ const rootReducer = combineReducers({
   currency: currencyReducer,
   language: languageReducer,
   filters: filtersReducer,
+  categories: categoriesReducer,
+  budgets: budgetsReducer,
+  entities: entitiesReducer,
+  valuations: valuationsReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
 
 const persistConfig = {
-  key: 'root',
+  key: 'sushi-v1',
   version: 2,
   storage: AsyncStorage,
-  whitelist: ['theme', 'wallets', 'transactions', 'currency', 'language'],
+  whitelist: ['theme', 'wallets', 'transactions', 'currency', 'language', 'categories', 'budgets', 'entities', 'valuations'],
   migrate: createMigrate(Migrations as unknown as MigrationManifest, {
     debug: false,
   }),

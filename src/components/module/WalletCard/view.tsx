@@ -3,8 +3,8 @@ import { TouchableOpacity } from 'react-native';
 import Text from 'components/base/Text/view';
 import useStyles from './style';
 import { WalletCardProps } from './props';
-import { Add } from 'components/base/SVG';
-import { formatCurrency } from 'utils/formatCurrency';
+import { Plus } from 'lucide-react-native';
+import { formatCurrency } from '../../../utils/formatCurrency';
 
 const WalletCard = (props: WalletCardProps) => {
   const {
@@ -25,7 +25,7 @@ const WalletCard = (props: WalletCardProps) => {
         onPress={onPress}
         style={[styles.templateContainer, containerStyle]}
         activeOpacity={0.6}>
-        <Add width={32} height={32} fill={colors.PRIMARY} />
+        <Plus size={32} color={colors.PRIMARY} />
       </TouchableOpacity>
     );
   }

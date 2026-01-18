@@ -1,5 +1,7 @@
 export type MainStackParamList = {
-  HOME?: {};
+  AUTH?: {};
+  ONBOARDING?: {};
+  MAIN?: {};
   TRANSACTIONS?: {};
   CREATE_WALLET?: {};
   EDIT_WALLET?: {
@@ -16,6 +18,11 @@ export type MainStackParamList = {
     transactionId: string;
   };
   SETTINGS?: {};
-  INSIGHTS?: {};
   FILTERS?: {};
+  BUDGET?: {};
+  ACCOUNTS?: {};
+  DEBT_ANALYSIS?: {};
+  ADD_VALUATION?: {
+    walletId: string;
+  };
 };

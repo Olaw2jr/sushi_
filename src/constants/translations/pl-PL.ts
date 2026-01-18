@@ -65,6 +65,14 @@ const pl_PL: Translation = {
   THEME: 'Motyw',
   THEME_LIGHT: 'Jasny',
   THEME_DARK: 'Ciemny',
+  // BUDGET
+  BUDGET_EMPTY_TITLE: "No Budget Categories Yet",
+  BUDGET_EMPTY_DESCRIPTION: "Create categories to start planning your spending.",
+  CREATE_CATEGORY: "Create Category",
+  HOME: "Home",
+  BUDGET: "Budget",
+  ACCOUNTS: "Accounts",
+  PAYEE: "Payee",
 };
 
 export default pl_PL;

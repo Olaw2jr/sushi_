@@ -13,7 +13,7 @@ const useStyles = () => {
     headerTitleContainer: {
       marginLeft: 8,
     },
-    headerBackAction: {
+    headerLeftAction: {
       width: 40,
       height: 40,
       justifyContent: 'center',

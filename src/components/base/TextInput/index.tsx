@@ -6,7 +6,7 @@ import {
 } from '../../base/TextInput/props';
 
 import TextInputView from './view';
-import Text from 'components/base/Text';
+import TextWithTranslation from 'components/base/Text/index';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 
@@ -20,7 +20,7 @@ const TextInput = (
     <TextInputView
       {...textInputProps}
       renderLabel={() => (
-        <Text
+        <TextWithTranslation
           variant="label"
           style={styles.label}
           translationKey={translationKey}

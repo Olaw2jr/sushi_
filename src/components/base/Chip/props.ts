@@ -4,6 +4,7 @@ import { Theme } from 'store/theme';
 
 export interface ChipProps {
   containerStyle?: ViewStyle;
+  className?: string;
   theme?: Theme;
   label: string;
   selected?: boolean;

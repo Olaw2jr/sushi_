@@ -2,7 +2,6 @@ import RNBootSplash from 'react-native-bootsplash';
 import React, { useEffect } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { MainStackParamList } from 'types/Route';
-import HomeScreen from './Home';
 import CreateWalletScreen from './CreateWallet';
 import EditWalletScreen from './EditWallet';
 import CreateTransactionScreen from './CreateTransaction';
@@ -11,8 +10,13 @@ import WalletDetailsScreen from './WalletDetails';
 import TransactionDetailsScreen from './TransactionDetails';
 import SettingsScreen from './Settings';
 import TransactionsScreen from './Transactions';
-import InsightsScreen from './Insights';
 import FiltersScreen from './Filters';
+import BudgetScreen from './Budget';
+import DebtAnalysisScreen from './DebtAnalysis';
+import AddValuationScreen from './AddValuation';
+import AuthScreen from './Auth';
+import OnboardingScreen from './Onboarding';
+import BottomTabs from './BottomTabs';
 
 const MainStack = createNativeStackNavigator<MainStackParamList>();
 
@@ -21,11 +25,21 @@ const Routes = () => {
     RNBootSplash.hide({ fade: true });
   }, []);
   return (
-    <MainStack.Navigator initialRouteName="HOME">
+    <MainStack.Navigator initialRouteName="AUTH">
       <MainStack.Screen
         options={{ headerShown: false }}
-        name="HOME"
-        component={HomeScreen}
+        name="AUTH"
+        component={AuthScreen}
+      />
+      <MainStack.Screen
+        options={{ headerShown: false }}
+        name="ONBOARDING"
+        component={OnboardingScreen}
+      />
+      <MainStack.Screen
+        options={{ headerShown: false }}
+        name="MAIN"
+        component={BottomTabs}
       />
       <MainStack.Screen
         options={{ headerShown: false }}
@@ -69,13 +83,23 @@ const Routes = () => {
       />
       <MainStack.Screen
         options={{ headerShown: false }}
-        name="INSIGHTS"
-        component={InsightsScreen}
+        name="FILTERS"
+        component={FiltersScreen}
       />
       <MainStack.Screen
         options={{ headerShown: false }}
-        name="FILTERS"
-        component={FiltersScreen}
+        name="BUDGET"
+        component={BudgetScreen}
+      />
+      <MainStack.Screen
+        options={{ headerShown: false }}
+        name="DEBT_ANALYSIS"
+        component={DebtAnalysisScreen}
+      />
+      <MainStack.Screen
+        options={{ headerShown: false }}
+        name="ADD_VALUATION"
+        component={AddValuationScreen}
       />
     </MainStack.Navigator>
   );

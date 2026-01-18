@@ -6,9 +6,8 @@ import { InsightsPrivateProps, InsightsPublicProps } from './props';
 import InsightsView from './view';
 
 const InsightsContainer = (props: InsightsPublicProps) => {
-  const wallets = useSelector((state: RootState) => state.wallets);
-
   const language = useSelector((state: RootState) => state.currency.language);
+  const wallets = useSelector((state: RootState) => state.wallets);
   const transactions = useSelector((state: RootState) => state.transactions);
 
   const generatedProps: InsightsPrivateProps = {

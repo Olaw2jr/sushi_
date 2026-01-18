@@ -9,6 +9,8 @@ const sw_TZ = {
     // ADD ACCOUNT
     ADD_ACCOUNT: 'Ongeza Akaunti',
     ACCOUNT_NAME: 'Jina la Akaunti',
+    ACCOUNT_TYPE: 'Aina ya Akaunti',
+    ON_BUDGET: 'Kwenye Bajeti',
     INITIAL_AMOUNT: 'Kiasi cha Awali',
     CREATE_ACCOUNT: 'Tengeneza Akaunti',
 
@@ -84,6 +86,14 @@ const sw_TZ = {
     INCOME: 'Mapato',
     EXPENSES: 'Matumizi',
     EXPORT_SUCCESS: 'Miamala imehamishwa hadi {{fileName}}',
+  // BUDGET
+  BUDGET_EMPTY_TITLE: "No Budget Categories Yet",
+  BUDGET_EMPTY_DESCRIPTION: "Create categories to start planning your spending.",
+  CREATE_CATEGORY: "Create Category",
+  HOME: "Nyumbani",
+  BUDGET: "Bajeti",
+  ACCOUNTS: "Akaunti",
+  PAYEE: "Payee",
 };
 
 export default sw_TZ;

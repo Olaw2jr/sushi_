@@ -3,7 +3,7 @@ import { Modal, View, TouchableOpacity, ScrollView } from 'react-native';
 import Text from 'components/base/Text/view';
 import useStyles from './style';
 import { PickerPrivateProps } from './props';
-import { Down, Close } from 'components/base/SVG';
+import { ChevronDown, X } from 'lucide-react-native';
 
 const Picker = (props: PickerPrivateProps) => {
   const {
@@ -25,6 +25,8 @@ const Picker = (props: PickerPrivateProps) => {
   const selectedOption = options.find(
     (option) => option.value === selectedValue,
   );
+  const selectedLabel = selectedOption ? selectedOption.label : '';
+
   return (
     <>
       <View style={[styles.container, containerStyle]}>
@@ -44,29 +46,20 @@ const Picker = (props: PickerPrivateProps) => {
               setShowModal(true);
             }
           }}>
-          <Text variant="body" style={styles.value}>
-            {selectedOption?.label || placeholder || ''}
+          <Text theme={theme} style={selectedValue ? {} : styles.placeholder}>
+            {selectedLabel || props.placeholder}
           </Text>
-          <Down width={16} height={16} fill={colors.BORDER} />
+          <ChevronDown size={20} color={colors.PRIMARY_TEXT} />
         </TouchableOpacity>
       </View>
 
       <Modal visible={showModal} transparent animationType="fade">
         <View style={[styles.modalContainer, containerStyle]}>
           <View style={styles.modalContentArea}>
-            <View style={styles.modalTitleContainer}>
-              <Text
-                variant="title"
-                containerStyle={styles.modalTitleTextContainer}
-                style={styles.modalTitle}>
-                {label}
-              </Text>
-              <TouchableOpacity
-                style={styles.modalTitleAction}
-                onPress={() => {
-                  setShowModal(false);
-                }}>
-                <Close fill={colors.PRIMARY_TEXT} width={24} height={24} />
+            <View style={styles.modalHeader}>
+              <Text theme={theme} variant="subtitle" translationKey={props.translationKey} />
+              <TouchableOpacity onPress={() => setShowModal(false)}>
+                <X size={24} color={colors.PRIMARY_TEXT} />
               </TouchableOpacity>
             </View>
             <ScrollView>

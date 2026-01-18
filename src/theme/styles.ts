@@ -10,7 +10,8 @@ export const getGlobalStyles = (theme: THEME_OPTION) => {
     },
     HEADER: {
       display: 'flex',
-      padding: 16,
+      paddingHorizontal: 24,
+      paddingVertical: 20,
       backgroundColor: COLORS[theme].BACKGROUND,
       flexDirection: 'row',
       alignItems: 'center',

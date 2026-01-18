@@ -51,6 +51,23 @@ export const WASABI = {
   STATUS_BAR: 'dark-content' as StatusBarStyle,
 };
 
+export const SUSHI_2 = {
+  PRIMARY: '#1c1917', // stone-900
+  POSITIVE: '#16a34a', // green-600
+  NEGATIVE: '#dc2626', // red-600
+  TITLE: '#1c1917',
+  PRIMARY_TEXT: '#1c1917',
+  SECONDARY_TEXT: '#78716c', // stone-500
+  DISABLE: '#d6d3d1', // stone-300
+  BORDER: '#e7e5e4', // stone-200
+  DIVIDER: '#f5f5f4', // stone-100
+  PLACE_HOLDER: '#a8a29e', // stone-400
+  BACKGROUND: '#fafaf9', // stone-50
+  AREA_HIGHLIGHT: '#ffffff',
+  ERROR: '#ef4444', // red-500
+  STATUS_BAR: 'dark-content' as StatusBarStyle,
+};
+
 export default {
   LIGHT,
   DARK,
@@ -58,4 +75,5 @@ export default {
   Dark: DARK,
   WASABI,
   Wasabi: WASABI,
+  SUSHI_2,
 };

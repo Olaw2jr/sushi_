@@ -3,14 +3,8 @@ import { Transactions } from 'store/transactions';
 import { Wallets } from 'store/wallets';
 import { MainStackParamList } from 'types/Route';
 
-export type TransactionFilter = {
-  startDate: Date | null;
-  endDate: Date | null;
-  searchTerm: string;
-};
-
 export interface InsightsPublicProps
-  extends NativeStackScreenProps<MainStackParamList, 'TRANSACTIONS'> {}
+  extends NativeStackScreenProps<MainStackParamList, 'INSIGHTS'> {}
 
 export interface InsightsPrivateProps {
   wallets: Wallets;
@@ -18,6 +12,4 @@ export interface InsightsPrivateProps {
   language: string;
 }
 
-export interface InsightsProps
-  extends InsightsPublicProps,
-    InsightsPrivateProps {}
+export interface InsightsProps extends InsightsPublicProps, InsightsPrivateProps {}

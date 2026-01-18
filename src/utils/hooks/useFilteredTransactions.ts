@@ -57,6 +57,7 @@ export type UseFilteredTransactionsInput = Partial<Filters> & {};
 const useFilteredTransactions = (input?: UseFilteredTransactionsInput) => {
   const transactions = useSelector((state: RootState) => state.transactions);
   const globalFilters = useSelector((state: RootState) => state.filters);
+  
   const filters = {
     ...globalFilters,
     ...(input || {}),
@@ -81,12 +82,12 @@ const useFilteredTransactions = (input?: UseFilteredTransactionsInput) => {
   );
 
   const groupByDate = groupBy((transaction: Transaction) =>
-    formatDate(transaction.paidAt, 'MMMM d yyyy'),
+    startOfDay(new Date(transaction.paidAt)).toISOString(),
   );
 
   const dailyFilteredTransactions = Object.entries(
     groupByDate(filteredTransactions),
-  ).map(([day, data]) => ({ day, data }));
+  ).map(([day, data]) => ({ day, data: data || [] }));
 
   const sortByDay = sortBy(
     (countedWalletId: typeof dailyFilteredTransactions[number]) =>

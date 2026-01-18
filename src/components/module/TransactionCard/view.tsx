@@ -3,7 +3,6 @@ import { TouchableOpacity, View } from 'react-native';
 import Text from 'components/base/Text/view';
 import useStyles from './style';
 import { TransactionCardProps } from './props';
-import { UpRight, DownLeft, UpDown } from 'components/base/SVG';
 import { formatCurrency } from 'utils/formatCurrency';
 import { formatDate } from 'utils/formatDate';
 
@@ -58,33 +57,34 @@ const TransactionCard = (props: TransactionCardProps) => {
         <View style={styles.row}>
           <Text
             containerStyle={styles.rowColumnLeft}
-            variant="subtitle"
+            variant="body"
+            style={{ fontWeight: '500' }}
             theme={theme}>
             {category}
           </Text>
+          <Text
+            containerStyle={styles.rowColumnRight}
+            variant="money"
+            style={{ color: config.color }}
+            theme={theme}>
+            {`${config.prefix}${formatCurrency(Math.abs(amount), {
+              language,
+            })}`}
+          </Text>
+        </View>
+        <View style={styles.row}>
+          <Text
+            containerStyle={styles.rowColumnLeft}
+            variant="label"
+            theme={theme}>{`${sourceWallet}${
+            destinationWallet ? ` to ${destinationWallet}` : ''
+          }`}</Text>
           <Text
             containerStyle={styles.rowColumnRight}
             variant="label"
             style={styles.dateText}
             theme={theme}>
             {formatDate(paidAt, 'hh:mm a')}
-          </Text>
-        </View>
-        <View style={styles.row}>
-          <Text
-            containerStyle={styles.rowColumnLeft}
-            variant="body"
-            theme={theme}>{`${sourceWallet}${
-            destinationWallet ? ` to ${destinationWallet}` : ''
-          }`}</Text>
-          <Text
-            containerStyle={styles.rowColumnRight}
-            style={{ color: config.color }}
-            variant="subtitle"
-            theme={theme}>
-            {`${config.prefix}${formatCurrency(Math.abs(amount), {
-              language,
-            })}`}
           </Text>
         </View>
         {(description || '').length > 0 && (

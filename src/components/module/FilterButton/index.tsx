@@ -1,4 +1,4 @@
-import { Filters } from 'components/base/SVG';
+import { Filter } from 'lucide-react-native';
 import React from 'react';
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
 import { useSelector } from 'react-redux';
@@ -32,7 +32,7 @@ const FilterButton = (props: FilterButtonProps) => {
         props.onPress?.();
       }}>
       <View style={{ flexDirection: 'row' }}>
-        <Filters fill={colors.PRIMARY_TEXT} width={24} height={24} />
+        <Filter color={colors.PRIMARY_TEXT} size={24} />
         {hasActiveFilter && (
           <View
             style={{

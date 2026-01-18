@@ -1,35 +1,119 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 import { getGlobalStyles, COLORS } from 'theme';
 
 const useStyles = () => {
+  const { width } = useWindowDimensions();
   const theme = useSelector((state: RootState) => state.theme);
   const colors = COLORS[theme.base];
   const STYLES = getGlobalStyles(theme.base);
+
+  const isTablet = width > 768;
+
   const styles = StyleSheet.create({
     container: STYLES.CONTAINER,
-    header: STYLES.HEADER,
-    headerTitleContainer: {
-      marginLeft: 8,
-      flex: 1,
-      marginRight: 8,
+    header: {
+      paddingBottom: 8,
+      marginHorizontal: 8,
+      flexDirection: 'row',
+      alignItems: 'center',
+      borderBottomWidth: 1,
+      borderBottomColor: colors.DIVIDER,
+      paddingTop: isTablet ? 24 : 8,
     },
-    headerLeftAction: {
-      width: 40,
-      height: 40,
+    headerActionContainer: {
+      width: 48,
+      height: 48,
       justifyContent: 'center',
-      alignItems: 'flex-start',
+      alignItems: 'center',
+    },
+    balanceContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingHorizontal: 16,
+    },
+    breakdownContainer: {
+      marginTop: 16,
+      marginBottom: 8,
+    },
+    chipFilterContainer: {
+      flexDirection: 'row',
+      marginTop: 16,
+      marginBottom: 8,
+      paddingHorizontal: 8,
     },
     content: {
       flex: 1,
     },
     contentScroll: {
-      paddingBottom: 8,
       paddingHorizontal: 16,
+      paddingBottom: 8,
     },
+    contentHeader: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'flex-end',
+      paddingHorizontal: 16,
+      paddingVertical: 8,
+    },
+    contentHeaderAction: {
+      color: colors.PRIMARY,
+      textTransform: 'none',
+    },
+    walletsScrollContainer: {
+      height: 125,
+    },
+    walletCard: {
+      marginRight: 8,
+    },
+    transactionsContainer: {
+      flex: 1,
+      marginTop: 16,
+      marginHorizontal: 16,
+      borderWidth: 1,
+      borderColor: colors.DIVIDER,
+      borderRadius: 10,
+    },
+    transactionCard: {
+      marginTop: 8,
+    },
+    actionsContainer: {
+      padding: 16,
+      backgroundColor: colors.AREA_HIGHLIGHT,
+      paddingHorizontal: isTablet ? '20%' : 16,
+    },
+    dateText: {
+      color: colors.PLACE_HOLDER,
+      marginTop: 12,
+      fontSize: 14,
+    },
+    insightsButton: {
+      width: 40,
+      height: 40,
+      borderColor: colors.DIVIDER,
+      borderWidth: 1,
+      borderRadius: 20,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    spacer: {
+      height: 32,
+    },
+    tabletContent: {
+      flexDirection: 'row',
+      paddingHorizontal: 16,
+      gap: 24,
+    },
+    leftColumn: {
+      flex: 1,
+    },
+    rightColumn: {
+      flex: 1,
+    }
   });
-  return { styles, colors, theme };
+  return { styles, colors, theme, isTablet };
 };
 
 export default useStyles;

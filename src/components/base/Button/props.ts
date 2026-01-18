@@ -4,6 +4,7 @@ import { TranslationKey } from 'types/Translation';
 
 export interface ButtonPrivateProps {
   containerStyle?: ViewStyle;
+  className?: string;
   theme?: Theme;
   label: string;
   onPress?: () => void;

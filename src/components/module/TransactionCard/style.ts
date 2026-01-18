@@ -8,8 +8,8 @@ const useStyles = (theme: Theme = DEFAULT_THEME) => {
   // const STYLES = getGlobalStyles(theme.base);
   const styles = StyleSheet.create({
     container: {
-      padding: 16,
-      borderRadius: 10,
+      padding: 20,
+      borderRadius: 16,
       backgroundColor: colors.AREA_HIGHLIGHT,
       flexDirection: 'row',
       alignItems: 'flex-start',

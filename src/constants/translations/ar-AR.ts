@@ -68,6 +68,14 @@ const ar_AR: Translation = {
   THEME: 'السمة',
   THEME_LIGHT: 'فاتح',
   THEME_DARK: 'مظلم',
+  // BUDGET
+  BUDGET_EMPTY_TITLE: "No Budget Categories Yet",
+  BUDGET_EMPTY_DESCRIPTION: "Create categories to start planning your spending.",
+  CREATE_CATEGORY: "Create Category",
+  HOME: "Home",
+  BUDGET: "Budget",
+  ACCOUNTS: "Accounts",
+  PAYEE: "Payee",
 };
 
 export default ar_AR;

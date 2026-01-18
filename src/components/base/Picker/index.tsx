@@ -3,7 +3,7 @@ import useStyles from './style';
 import { PickerPrivateProps, PickerProps } from './props';
 
 import PickerView from './view';
-import Text from '../Text';
+import TextWithTranslation from '../Text/index';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 import { TRANSLATIONS } from 'constants/translations';
@@ -21,7 +21,7 @@ const Picker = (
       {...pickerProps}
       label={TRANSLATIONS[language][translationKey]}
       renderLabel={() => (
-        <Text
+        <TextWithTranslation
           variant="label"
           style={styles.label}
           translationKey={translationKey}
