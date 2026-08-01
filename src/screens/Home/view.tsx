@@ -11,7 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import useStyles from './styles';
 import { HomeProps } from './props';
 import WalletCard from 'components/module/WalletCard';
-import { Insights, Settings } from 'components/base/SVG';
+import { BarChart3, Settings } from 'lucide-react-native';
 import TransactionCard from 'components/module/TransactionCard';
 import { Transaction } from 'store/transactions';
 import { formatCurrency } from 'utils/formatCurrency';
@@ -137,7 +137,7 @@ const HomeView = (props: HomeProps) => {
             onPress={() => {
               navigation.navigate('INSIGHTS');
             }}>
-            <Insights width={20} height={20} fill={colors.PRIMARY_TEXT} />
+            <BarChart3 size={20} color={colors.PRIMARY_TEXT} />
           </TouchableOpacity>
         </View>
         <View style={styles.balanceContainer}>
@@ -155,7 +155,7 @@ const HomeView = (props: HomeProps) => {
           onPress={() => {
             navigation.navigate('SETTINGS');
           }}>
-          <Settings width={24} height={24} fill={colors.PRIMARY_TEXT} />
+          <Settings size={24} color={colors.PRIMARY_TEXT} />
         </TouchableOpacity>
       </View>
 

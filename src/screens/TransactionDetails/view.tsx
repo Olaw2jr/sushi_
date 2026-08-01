@@ -4,7 +4,7 @@ import { View, StatusBar, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import useStyles from './styles';
 import { TransactionDetailsProps } from './props';
-import { Back, Delete, Edit } from 'components/base/SVG';
+import { ChevronLeft, Trash2, Pencil } from 'lucide-react-native';
 import AlertModal from 'components/module/AlertModal';
 import { formatCurrency } from 'utils/formatCurrency';
 import { formatDate } from 'utils/formatDate';
@@ -60,7 +60,7 @@ const TransactionDetailsView = (props: TransactionDetailsProps) => {
           onPress={() => {
             navigation.goBack();
           }}>
-          <Back fill={colors.PRIMARY_TEXT} width={24} height={24} />
+          <ChevronLeft size={24} color={colors.PRIMARY_TEXT} />
         </TouchableOpacity>
         <Text
           containerStyle={styles.headerTitleContainer}
@@ -75,14 +75,14 @@ const TransactionDetailsView = (props: TransactionDetailsProps) => {
               transactionId: transaction.id,
             });
           }}>
-          <Edit fill={colors.PRIMARY_TEXT} width={24} height={24} />
+          <Pencil size={24} color={colors.PRIMARY_TEXT} />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.headerRightAction}
           onPress={() => {
             setShowDelete(true);
           }}>
-          <Delete fill={colors.PRIMARY_TEXT} width={24} height={24} />
+          <Trash2 size={24} color={colors.PRIMARY_TEXT} />
         </TouchableOpacity>
       </View>
       <View style={styles.content}>

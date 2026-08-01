@@ -3,7 +3,7 @@ import { Modal, View, TouchableOpacity, ScrollView } from 'react-native';
 import Text from 'components/base/Text/view';
 import useStyles from './style';
 import { DatePickerPrivateProps } from './props';
-import { Down, Close } from 'components/base/SVG';
+import { ChevronDown, X } from 'lucide-react-native';
 import { Calendar } from 'react-native-calendars';
 import eachDayOfInterval from 'date-fns/eachDayOfInterval';
 import format from 'date-fns/format';
@@ -67,7 +67,7 @@ const DatePicker = (props: DatePickerPrivateProps) => {
           <Text variant="body" style={styles.value}>
             {displayDate || defaultLabel || ''}
           </Text>
-          <Down width={16} height={16} fill={colors.BORDER} />
+          <ChevronDown size={16} color={colors.BORDER} />
         </TouchableOpacity>
       </View>
 
@@ -86,7 +86,7 @@ const DatePicker = (props: DatePickerPrivateProps) => {
                 onPress={() => {
                   setShowModal(false);
                 }}>
-                <Close fill={colors.PRIMARY_TEXT} width={24} height={24} />
+                <X size={24} color={colors.PRIMARY_TEXT} />
               </TouchableOpacity>
             </View>
             <ScrollView>
