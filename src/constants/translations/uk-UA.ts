@@ -67,7 +67,6 @@ const uk_UA: Translation = {
   THEME: 'Тема',
   THEME_LIGHT: 'Світла',
   THEME_DARK: 'Темна',
-  THEME_WASABI: 'Васабі',
 
   // Insights
   INSIGHTS: 'Статистика',

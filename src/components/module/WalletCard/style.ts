@@ -9,17 +9,14 @@ const useStyles = (theme: Theme = DEFAULT_THEME, _props: WalletCardProps) => {
   // const STYLES = getGlobalStyles(theme.base);
   const styles = StyleSheet.create({
     container: {
-      padding: 16,
-      borderRadius: 10,
-      width: 200,
-      backgroundColor: colors.AREA_HIGHLIGHT,
-      justifyContent: 'space-between',
+      gap: 8,
+      justifyContent: 'flex-start',
     },
     templateContainer: {
       padding: 16,
-      borderRadius: 10,
-      width: 150,
-      backgroundColor: colors.AREA_HIGHLIGHT,
+      borderRadius: 8,
+      borderWidth: 1,
+      borderColor: colors.DIVIDER,
       justifyContent: 'center',
       alignItems: 'center',
     },

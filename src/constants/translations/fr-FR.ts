@@ -62,7 +62,6 @@ const fr_FR: Translation = {
   THEME: 'Thème',
   THEME_LIGHT: 'Clair',
   THEME_DARK: 'Sombre',
-  THEME_WASABI: 'Wasabi',
 
   // Insights
   INSIGHTS: 'Insights',

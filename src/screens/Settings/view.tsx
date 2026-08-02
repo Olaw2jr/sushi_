@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import useStyles from './styles';
 import { SettingsProps } from './props';
 import { Language } from 'store/language';
+import { THEME_OPTION } from 'store/theme';
 import { ChevronLeft } from 'lucide-react-native';
 import Picker from 'components/base/Picker';
 import { TRANSLATIONS } from 'constants/translations';
@@ -31,8 +32,10 @@ const SettingsView = (props: SettingsProps) => {
   } = props;
   const { styles, theme, colors } = useStyles();
 
-  const [TEXT_THEME_LIGHT, TEXT_THEME_DARK, TEXT_THEME_WASABI] =
-    useTranslationKey(['THEME_LIGHT', 'THEME_DARK', 'THEME_WASABI']);
+  const [TEXT_THEME_LIGHT, TEXT_THEME_DARK] = useTranslationKey([
+    'THEME_LIGHT',
+    'THEME_DARK',
+  ]);
 
   const numbroLanguages = numbro.languages();
   const currencyLanguageOptions = Object.keys(numbroLanguages).reduce(
@@ -96,10 +99,7 @@ const SettingsView = (props: SettingsProps) => {
             containerStyle={styles.inputContainer}
             translationKey="THEME"
             selectedValue={baseTheme}
-            onSelect={(value) => {
-              // @ts-ignore
-              setBaseTheme(value);
-            }}
+            onSelect={(value) => value && setBaseTheme(value as THEME_OPTION)}
             options={[
               {
                 label: TEXT_THEME_LIGHT,
@@ -108,10 +108,6 @@ const SettingsView = (props: SettingsProps) => {
               {
                 label: TEXT_THEME_DARK,
                 value: 'Dark',
-              },
-              {
-                label: TEXT_THEME_WASABI,
-                value: 'Wasabi',
               },
             ]}
             theme={theme}
