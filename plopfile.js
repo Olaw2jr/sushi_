@@ -25,7 +25,7 @@ module.exports = function (plop) {
 
       const TEMPLATE_PATH = './templates/component';
       const COMPONENT_PATH = './src/components/{{type}}/{{name}}';
-      const STORYBOOK_PATH = './storybook/stories/{{type}}';
+      const STORYBOOK_PATH = './.rnstorybook/stories/{{type}}';
       const actions = [
         {
           type: 'add',
@@ -49,14 +49,8 @@ module.exports = function (plop) {
         },
         {
           type: 'add',
-          path: `${STORYBOOK_PATH}/{{pascalCase name}}.js`,
-          templateFile: `${TEMPLATE_PATH}/story.js.hbs`,
-        },
-        {
-          type: 'append',
-          path: `${STORYBOOK_PATH}/index.js`,
-          pattern: '/* PLOP_INJECT_IMPORT */',
-          template: "require('./{{pascalCase name}}');",
+          path: `${STORYBOOK_PATH}/{{pascalCase name}}.stories.tsx`,
+          templateFile: `${TEMPLATE_PATH}/story.stories.tsx.hbs`,
         },
       ];
 
