@@ -73,10 +73,6 @@ const useStyles = () => {
     transactionCard: {
       marginTop: 8,
     },
-    actionsContainer: {
-      padding: 16,
-      backgroundColor: colors.AREA_HIGHLIGHT,
-    },
     dateText: {
       color: colors.PLACE_HOLDER,
       marginTop: 12,

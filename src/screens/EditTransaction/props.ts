@@ -1,10 +1,10 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Transaction, Transactions } from 'store/transactions';
 import { Wallets } from 'store/wallets';
-import { MainStackParamList } from 'types/Route';
+import { RootStackParamList } from 'types/Route';
 
 export interface EditTransactionPublicProps
-  extends NativeStackScreenProps<MainStackParamList, 'EDIT_TRANSACTION'> {}
+  extends NativeStackScreenProps<RootStackParamList, 'EDIT_TRANSACTION'> {}
 
 export interface EditTransactionPrivateProps {
   transaction: Transaction;
