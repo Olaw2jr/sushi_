@@ -8,5 +8,5 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'warn',
     'react-native/no-inline-styles': 0,
   },
-  ignorePatterns: ['plopfile.js', 'storybook/**'],
+  ignorePatterns: ['plopfile.js', 'storybook/**', 'coverage/**'],
 };
