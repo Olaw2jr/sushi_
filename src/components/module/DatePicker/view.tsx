@@ -5,8 +5,7 @@ import useStyles from './style';
 import { DatePickerPrivateProps } from './props';
 import { ChevronDown, X } from 'lucide-react-native';
 import { Calendar } from 'react-native-calendars';
-import eachDayOfInterval from 'date-fns/eachDayOfInterval';
-import format from 'date-fns/format';
+import { eachDayOfInterval, format } from 'date-fns';
 import Button from 'components/base/Button/view';
 import { applyDayToDate } from 'utils/applyDayToDate';
 
@@ -45,7 +44,7 @@ const DatePicker = (props: DatePickerPrivateProps) => {
           end: endDate,
         })
       : []
-  ).reduce((accum, current) => {
+  ).reduce<Record<string, { marked: boolean }>>((accum, current) => {
     return {
       ...accum,
       [format(current, 'yyyy-MM-dd')]: { marked: true },

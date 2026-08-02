@@ -8,7 +8,7 @@ export interface TextInputPrivateProps {
   theme?: Theme;
   style?: ViewStyle;
   label?: string;
-  renderLabel?: () => React.ReactFragment;
+  renderLabel?: () => React.ReactNode;
   placeholder?: string;
   value?: string;
   onChangeText?: (value: string) => void;
