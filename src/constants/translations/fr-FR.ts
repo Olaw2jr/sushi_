@@ -30,7 +30,7 @@ const fr_FR: Translation = {
   NEW_TRANSACTION: 'Nouvelle Transaction',
   CREATE_TRANSACTION: 'Ajouter une Transaction',
   CATEGORY: 'Catégorie',
-  SOURCE_ACCOUNT: 'Compte d'origine',
+  SOURCE_ACCOUNT: "Compte d'origine",
   DESTINATION_ACCOUNT: 'Compte de destination',
   TRANSFER: 'Transférer',
   SHORT_DESCRIPTION: 'Description Courte',
@@ -52,9 +52,6 @@ const fr_FR: Translation = {
 
   // Transactions
   TRANSACTIONS: 'Transactions',
-  SEARCH: 'Rechercher',
-  DATE_RANGE: 'Plage de date',
-  SHOW_ALL: 'Tout montrer',
   EXPORT: 'Exporter',
 
   // SETTINGS
