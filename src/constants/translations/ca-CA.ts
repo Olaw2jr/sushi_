@@ -1,7 +1,8 @@
 import { Translation } from 'types/Translation';
 import en_US from './en-US';
 
-const ca_CA = {
+const ca_CA: Translation = {
+  ...en_US,
   // DASHBOARD
   ALL: 'Tots',
   CREDIT: 'Crèdit',
@@ -31,7 +32,7 @@ const ca_CA = {
   NEW_TRANSACTION: 'Nova transacció',
   CREATE_TRANSACTION: 'Crear transacció',
   CATEGORY: 'Categoria',
-  SOURCE_ACCOUNT: 'Compte d'origen',
+  SOURCE_ACCOUNT: "Compte d'origen",
   DESTINATION_ACCOUNT: 'Compte de destinació',
   TRANSFER: 'Transferència',
   SHORT_DESCRIPTION: 'Curta descripció',
@@ -47,7 +48,7 @@ const ca_CA = {
   TRANSACTION_DATE: 'Data de la transacció',
   TRANSACTION_TIME: 'Hora de la transacció',
   DATE_CREATED: 'Data de creació',
-  DATE_UPDATED: 'Data d'actualització',
+  DATE_UPDATED: "Data d'actualització",
   DELETE_TRANSACTION: 'Suprimeix la transacció?',
   DELETE_TRANSACTION_INFO:
     'Això suprimirà permanentment el registre de la transacció.',
@@ -76,7 +77,7 @@ const ca_CA = {
   SEARCH: 'Cercar',
   SEARCH_TERM: 'Terme de cerca',
   SEARCH_DESCRIPTION:
-    'Això cerca text similar a la descripció o categoria d'una transacció.',
+    "Això cerca text similar a la descripció o categoria d'una transacció.",
   DATE_RANGE: 'Interval de dates',
   SHOW_ALL: 'Mostrar tots',
   TRANSACTION_TYPE: 'Tipus de transacció',
