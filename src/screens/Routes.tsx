@@ -1,4 +1,4 @@
-import SplashScreen from 'react-native-splash-screen';
+import { hide as hideBootSplash } from 'react-native-bootsplash';
 import React, { useEffect } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { MainStackParamList } from 'types/Route';
@@ -18,7 +18,7 @@ const MainStack = createNativeStackNavigator<MainStackParamList>();
 
 const Routes = () => {
   useEffect(() => {
-    SplashScreen.hide();
+    hideBootSplash({ fade: true });
   }, []);
   return (
     <MainStack.Navigator initialRouteName="HOME">
