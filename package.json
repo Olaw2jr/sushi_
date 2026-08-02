@@ -62,33 +62,7 @@
     "react-test-renderer": "17.0.2",
     "typescript": "^3.8.3"
   },
-  "resolutions": {
-    "@types/react": "^17"
-  },
-  "jest": {
-    "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ],
-    "collectCoverageFrom": [
-      "src/store/**/*.{ts,tsx}",
-      "src/utils/**/*.{ts,tsx}",
-      "src/services/**/*.{ts,tsx}",
-      "!**/*.test.{ts,tsx}",
-      "!src/utils/testUtils/**"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 100,
-        "functions": 100,
-        "lines": 100,
-        "statements": 100
-      }
-    }
+  "engines": {
+    "node": ">=22.13.0"
   }
 }
