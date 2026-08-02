@@ -93,6 +93,12 @@ const TransactionsView = (props: TransactionsProps) => {
             theme={theme}
             label={`Transactions has been successfully exported to ${exportedFileName}`}
           />
+        ) : exportStatus === 'FAILED' ? (
+          <Info
+            theme={theme}
+            status="negative"
+            label="Export failed. Please try again."
+          />
         ) : (
           <View style={styles.actionsContainer}>
             <Button
