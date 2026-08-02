@@ -1,0 +1,25 @@
+import type { Meta, StoryObj } from '@storybook/react-native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import {{ pascalCase name}} from '../../../src/components/{{type}}/{{ pascalCase name}}';
+import { COLORS } from '../../../src/theme';
+
+const styles = StyleSheet.create({
+  container: { flex: 1, padding: 16, backgroundColor: COLORS.LIGHT.BACKGROUND },
+});
+
+const meta = {
+  component: {{ pascalCase name}},
+} satisfies Meta<typeof {{ pascalCase name}}>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Summary: Story = {
+  render: () => (
+    <View style={styles.container}>
+      <{{ pascalCase name}} />
+    </View>
+  ),
+};
