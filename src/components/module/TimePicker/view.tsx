@@ -10,7 +10,7 @@ import Text from 'components/base/Text/view';
 import useStyles from './style';
 import { TimePickerPrivateProps } from './props';
 import { ChevronDown, X } from 'lucide-react-native';
-import format from 'date-fns/format';
+import { format } from 'date-fns';
 
 const HOURS = [...new Array(24)].map((v, i) => `${i}`.padStart(2, '0'));
 const MINUTES = [...new Array(60)].map((v, i) => `${i}`.padStart(2, '0'));

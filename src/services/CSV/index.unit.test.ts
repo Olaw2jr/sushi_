@@ -1,4 +1,4 @@
-jest.mock('rn-fetch-blob', () => ({
+jest.mock('react-native-blob-util', () => ({
   fs: {
     dirs: { DownloadDir: '/mock/downloads' },
     createFile: jest.fn().mockResolvedValue(undefined),

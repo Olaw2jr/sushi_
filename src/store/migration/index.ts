@@ -1,5 +1,5 @@
 import { RootState } from 'store';
-import produce from 'immer';
+import { produce } from 'immer';
 import { Transactions } from 'store/transactions';
 import { PersistedState } from 'redux-persist';
 

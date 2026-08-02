@@ -5,10 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Routes from 'screens/Routes';
 import { PersistGate } from 'redux-persist/integration/react';
-import { persistor, store, runSaga } from 'infrastracture';
-import sagas from './store/sagas';
-
-runSaga(sagas);
+import { persistor, store } from 'infrastracture';
 
 const App = () => {
   return (

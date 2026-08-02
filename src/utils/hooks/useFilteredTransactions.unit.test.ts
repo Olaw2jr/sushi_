@@ -56,11 +56,11 @@ const noFilters = {
 };
 
 describe('useFilteredTransactions', () => {
-  test('returns all transactions sorted most-recent-first when no filters apply', () => {
-    const { result } = renderHookWithStore(() => useFilteredTransactions(), {
-      transactions,
-      filters: noFilters,
-    });
+  test('returns all transactions sorted most-recent-first when no filters apply', async () => {
+    const { result } = await renderHookWithStore(
+      () => useFilteredTransactions(),
+      { transactions, filters: noFilters },
+    );
 
     expect(result.current.filteredTransactions.map((t) => t.id)).toEqual([
       'transferOut',
@@ -70,11 +70,11 @@ describe('useFilteredTransactions', () => {
     ]);
   });
 
-  test('groups the filtered transactions by day, most recent day first', () => {
-    const { result } = renderHookWithStore(() => useFilteredTransactions(), {
-      transactions,
-      filters: noFilters,
-    });
+  test('groups the filtered transactions by day, most recent day first', async () => {
+    const { result } = await renderHookWithStore(
+      () => useFilteredTransactions(),
+      { transactions, filters: noFilters },
+    );
 
     expect(
       result.current.dailyFilteredTransactions.map((group) =>
@@ -83,81 +83,87 @@ describe('useFilteredTransactions', () => {
     ).toEqual([['transferOut'], ['otherAccount'], ['groceries'], ['salary']]);
   });
 
-  test('filters by search term against category and description', () => {
-    const { result } = renderHookWithStore(() => useFilteredTransactions(), {
-      transactions,
-      filters: { ...noFilters, searchTerm: 'lunch' },
-    });
+  test('filters by search term against category and description', async () => {
+    const { result } = await renderHookWithStore(
+      () => useFilteredTransactions(),
+      { transactions, filters: { ...noFilters, searchTerm: 'lunch' } },
+    );
 
     expect(result.current.filteredTransactions.map((t) => t.id)).toEqual([
       'otherAccount',
     ]);
   });
 
-  test('filters by date range using only startDate (defaults endDate to startDate)', () => {
-    const { result } = renderHookWithStore(() => useFilteredTransactions(), {
-      transactions,
-      filters: {
-        ...noFilters,
-        startDate: new Date('2024-01-05T00:00:00.000Z'),
+  test('filters by date range using only startDate (defaults endDate to startDate)', async () => {
+    const { result } = await renderHookWithStore(
+      () => useFilteredTransactions(),
+      {
+        transactions,
+        filters: {
+          ...noFilters,
+          startDate: new Date('2024-01-05T00:00:00.000Z'),
+        },
       },
-    });
+    );
 
     expect(result.current.filteredTransactions.map((t) => t.id)).toEqual([
       'groceries',
     ]);
   });
 
-  test('filters by an explicit date range', () => {
-    const { result } = renderHookWithStore(() => useFilteredTransactions(), {
-      transactions,
-      filters: {
-        ...noFilters,
-        startDate: new Date('2024-01-05T00:00:00.000Z'),
-        endDate: new Date('2024-01-10T00:00:00.000Z'),
+  test('filters by an explicit date range', async () => {
+    const { result } = await renderHookWithStore(
+      () => useFilteredTransactions(),
+      {
+        transactions,
+        filters: {
+          ...noFilters,
+          startDate: new Date('2024-01-05T00:00:00.000Z'),
+          endDate: new Date('2024-01-10T00:00:00.000Z'),
+        },
       },
-    });
+    );
 
     expect(result.current.filteredTransactions.map((t) => t.id).sort()).toEqual(
       ['groceries', 'otherAccount', 'transferOut'].sort(),
     );
   });
 
-  test('filters by accountId matching either source or destination wallet', () => {
-    const { result } = renderHookWithStore(() => useFilteredTransactions(), {
-      transactions,
-      filters: { ...noFilters, accountId: 'wallet-2' },
-    });
+  test('filters by accountId matching either source or destination wallet', async () => {
+    const { result } = await renderHookWithStore(
+      () => useFilteredTransactions(),
+      { transactions, filters: { ...noFilters, accountId: 'wallet-2' } },
+    );
 
     expect(result.current.filteredTransactions.map((t) => t.id).sort()).toEqual(
       ['otherAccount', 'transferOut'].sort(),
     );
   });
 
-  test('filters DEBIT to positive, non-transfer transactions', () => {
-    const { result } = renderHookWithStore(() => useFilteredTransactions(), {
-      transactions,
-      filters: { ...noFilters, transactionType: 'DEBIT' },
-    });
+  test('filters DEBIT to positive, non-transfer transactions', async () => {
+    const { result } = await renderHookWithStore(
+      () => useFilteredTransactions(),
+      { transactions, filters: { ...noFilters, transactionType: 'DEBIT' } },
+    );
 
     expect(result.current.filteredTransactions.map((t) => t.id)).toEqual([
       'salary',
     ]);
   });
 
-  test('filters CREDIT to negative, non-transfer transactions', () => {
-    const { result } = renderHookWithStore(() => useFilteredTransactions(), {
-      transactions,
-      filters: { ...noFilters, transactionType: 'CREDIT' },
-    });
+  test('filters CREDIT to negative, non-transfer transactions', async () => {
+    const { result } = await renderHookWithStore(
+      () => useFilteredTransactions(),
+      { transactions, filters: { ...noFilters, transactionType: 'CREDIT' } },
+    );
 
     expect(result.current.filteredTransactions.map((t) => t.id).sort()).toEqual(
       ['groceries', 'otherAccount'].sort(),
     );
   });
 
-  test('local overrides passed to the hook take precedence over global filters', () => {
-    const { result } = renderHookWithStore(
+  test('local overrides passed to the hook take precedence over global filters', async () => {
+    const { result } = await renderHookWithStore(
       () => useFilteredTransactions({ accountId: 'wallet-2' }),
       {
         transactions,

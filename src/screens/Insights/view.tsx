@@ -19,8 +19,7 @@ import { formatCurrency } from 'utils/formatCurrency';
 import { formatDate } from 'utils/formatDate';
 import { LineChart } from 'react-native-chart-kit';
 import useFilteredTransactions from 'utils/hooks/useFilteredTransactions';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { useAppSelector } from 'store';
 import FilterButton from 'components/module/FilterButton';
 
 const screenWidth = Dimensions.get('window').width;
@@ -29,7 +28,7 @@ const InsightsView = (props: InsightsProps) => {
   const { navigation, wallets, transactions, language } = props;
   const { styles, theme, colors } = useStyles();
 
-  const filters = useSelector((state: RootState) => state.filters);
+  const filters = useAppSelector((state) => state.filters);
   const { filteredTransactions, dailyFilteredTransactions } =
     useFilteredTransactions();
 
@@ -87,8 +86,11 @@ const InsightsView = (props: InsightsProps) => {
     (transaction: Transaction) => transaction.category,
   );
 
-  const groupedByCategoryTransactions =
-    groupByCategoryName(filteredTransactions);
+  // groupBy types its return as Partial<Record<K, T[]>>, but Object.keys
+  // only ever returns keys it actually populated with a real array.
+  const groupedByCategoryTransactions = groupByCategoryName(
+    filteredTransactions,
+  ) as Record<string, Transaction[]>;
 
   const summedCategoryArray = Object.keys(groupedByCategoryTransactions).map(
     (category) => {

@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: '@react-native-community',
+  extends: '@react-native',
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
   rules: {
@@ -8,5 +8,5 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'warn',
     'react-native/no-inline-styles': 0,
   },
-  ignorePatterns: ['plopfile.js'],
+  ignorePatterns: ['plopfile.js', 'storybook/**', 'coverage/**'],
 };

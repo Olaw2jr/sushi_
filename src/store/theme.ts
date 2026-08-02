@@ -1,6 +1,6 @@
 import { Appearance } from 'react-native';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import produce from 'immer';
+import { produce } from 'immer';
 
 export type THEME_OPTION = 'Light' | 'Dark';
 

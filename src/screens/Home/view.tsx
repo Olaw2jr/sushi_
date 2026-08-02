@@ -12,9 +12,9 @@ import useStyles from './styles';
 import { HomeProps } from './props';
 import WalletCard from 'components/module/WalletCard';
 import { BarChart3, Settings } from 'lucide-react-native';
-import TransactionCard from 'components/module/TransactionCard';
-import { Transaction } from 'store/transactions';
+import { createListItemRenderer } from 'components/module/TransactionCard';
 import { formatCurrency } from 'utils/formatCurrency';
+import { deriveWalletBalance } from 'utils/deriveWalletBalance';
 import TextView from 'components/base/Text/view';
 import { Translation } from 'types/Translation';
 import Button from 'components/base/Button';
@@ -89,30 +89,14 @@ const HomeView = (props: HomeProps) => {
   const currentBalance =
     totalInitialBalance + balanceBreakdown.income - balanceBreakdown.expenses;
 
-  const renderTransaction = ({ item: transaction }: { item: Transaction }) => {
-    const sourceWallet = wallets[transaction.sourceWalletId];
-    const destinationWallet = transaction.destinationWalletId
-      ? wallets[transaction.destinationWalletId]
-      : null;
-    return (
-      <TransactionCard
-        containerStyle={styles.transactionCard}
-        key={transaction.id}
-        category={transaction.category}
-        amount={transaction.amount}
-        sourceWallet={sourceWallet.label}
-        destinationWallet={destinationWallet?.label}
-        paidAt={transaction.paidAt}
-        onPress={() =>
-          navigation.navigate('TRANSACTION_DETAILS', {
-            transactionId: transaction.id,
-          })
-        }
-        theme={theme}
-        language={language}
-      />
-    );
-  };
+  const renderTransaction = createListItemRenderer({
+    wallets,
+    theme,
+    language,
+    containerStyle: styles.transactionCard,
+    onPressItem: (transactionId) =>
+      navigation.navigate('TRANSACTION_DETAILS', { transactionId }),
+  });
 
   return (
     <SafeAreaView style={styles.container}>
@@ -173,18 +157,11 @@ const HomeView = (props: HomeProps) => {
                     transaction.sourceWalletId === wallet.id ||
                     transaction.destinationWalletId === wallet.id,
                 );
-                const totalTransactionAmount = walletTransactions.reduce(
-                  (currentTotal: number, transaction) => {
-                    if (transaction.destinationWalletId === wallet.id) {
-                      return currentTotal + -transaction.amount;
-                    }
-                    return currentTotal + transaction.amount;
-                  },
-                  0,
+                const { balance: currentWalletBalance } = deriveWalletBalance(
+                  wallet.id,
+                  wallet.initialAmount,
+                  walletTransactions,
                 );
-
-                const currentWalletBalance =
-                  wallet.initialAmount + totalTransactionAmount;
                 return (
                   <WalletCard
                     containerStyle={styles.walletCard}

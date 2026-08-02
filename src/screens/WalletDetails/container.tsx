@@ -1,6 +1,6 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from 'store';
 import { deleteWalletAction } from 'store/wallets';
 
 import { WalletDetailsPrivateProps, WalletDetailsPublicProps } from './props';
@@ -9,9 +9,9 @@ import WalletDetailsView from './view';
 const WalletDetailsContainer = (props: WalletDetailsPublicProps) => {
   const dispatch = useDispatch();
   const walletId = props.route.params?.walletId || '';
-  const language = useSelector((state: RootState) => state.currency.language);
-  const wallets = useSelector((state: RootState) => state.wallets);
-  const transactions = useSelector((state: RootState) => state.transactions);
+  const language = useAppSelector((state) => state.currency.language);
+  const wallets = useAppSelector((state) => state.wallets);
+  const transactions = useAppSelector((state) => state.transactions);
   const wallet = wallets[walletId];
 
   if (!wallet) {

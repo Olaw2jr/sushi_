@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TRANSLATIONS } from 'constants/translations';
-import produce from 'immer';
+import { produce } from 'immer';
 
 export type Language = {
   selected: keyof typeof TRANSLATIONS;

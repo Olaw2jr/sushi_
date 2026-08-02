@@ -5,8 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import useStyles from './styles';
 import { TransactionsProps } from './props';
 import { ChevronLeft } from 'lucide-react-native';
-import TransactionCard from 'components/module/TransactionCard';
-import { Transaction } from 'store/transactions';
+import { createListItemRenderer } from 'components/module/TransactionCard';
 import TextView from 'components/base/Text/view';
 import Button from 'components/base/Button';
 import { createCSV, recordToCSVString } from 'services/CSV';
@@ -35,31 +34,15 @@ const TransactionsView = (props: TransactionsProps) => {
     }
   }, [exportStatus]);
 
-  const renderTransaction = ({ item: transaction }: { item: Transaction }) => {
-    const sourceWallet = wallets[transaction.sourceWalletId];
-    const destinationWallet = transaction.destinationWalletId
-      ? wallets[transaction.destinationWalletId]
-      : null;
-    return (
-      <TransactionCard
-        containerStyle={styles.transactionCard}
-        key={transaction.id}
-        category={transaction.category}
-        description={transaction.description}
-        amount={transaction.amount}
-        sourceWallet={sourceWallet.label}
-        destinationWallet={destinationWallet?.label}
-        paidAt={transaction.paidAt}
-        onPress={() =>
-          navigation.navigate('TRANSACTION_DETAILS', {
-            transactionId: transaction.id,
-          })
-        }
-        theme={theme}
-        language={language}
-      />
-    );
-  };
+  const renderTransaction = createListItemRenderer({
+    wallets,
+    theme,
+    language,
+    containerStyle: styles.transactionCard,
+    showDescription: true,
+    onPressItem: (transactionId) =>
+      navigation.navigate('TRANSACTION_DETAILS', { transactionId }),
+  });
 
   return (
     <SafeAreaView style={styles.container}>

@@ -10,7 +10,7 @@ export type TransactionFilter = {
 };
 
 export interface InsightsPublicProps
-  extends NativeStackScreenProps<MainStackParamList, 'TRANSACTIONS'> {}
+  extends NativeStackScreenProps<MainStackParamList, 'INSIGHTS'> {}
 
 export interface InsightsPrivateProps {
   wallets: Wallets;

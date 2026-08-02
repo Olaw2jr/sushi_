@@ -13,8 +13,8 @@ import Picker from 'components/base/Picker';
 import useTranslationKey from 'utils/hooks/useTranslationKey';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MainStackParamList } from 'types/Route';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from 'store';
 import { COLORS, getGlobalStyles } from 'theme';
 import { Wallets } from 'store/wallets';
 import Chip from 'components/base/Chip';
@@ -38,12 +38,12 @@ const FiltersView = (props: FiltersProps) => {
 
   const dispatch = useDispatch();
 
-  const theme = useSelector((state: RootState) => state.theme);
+  const theme = useAppSelector((state) => state.theme);
   const colors = COLORS[theme.base];
   const STYLES = getGlobalStyles(theme.base);
 
-  const filters = useSelector((state: RootState) => state.filters);
-  const wallets = useSelector((state: RootState) => state.wallets);
+  const filters = useAppSelector((state) => state.filters);
+  const wallets = useAppSelector((state) => state.wallets);
   const walletOptions = toWalletOptions(wallets);
 
   const [startDate, setStartDate] = useState<Date | null>(filters.startDate);

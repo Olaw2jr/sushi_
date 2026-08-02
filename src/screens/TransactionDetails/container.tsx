@@ -1,6 +1,6 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from 'store';
 
 import {
   TransactionDetailsPrivateProps,
@@ -13,9 +13,9 @@ import TransactionDetailsView from './view';
 const TransactionDetailsContainer = (props: TransactionDetailsPublicProps) => {
   const dispatch = useDispatch();
   const transactionId = props.route.params?.transactionId || '';
-  const language = useSelector((state: RootState) => state.currency.language);
-  const wallets = useSelector((state: RootState) => state.wallets);
-  const transactions = useSelector((state: RootState) => state.transactions);
+  const language = useAppSelector((state) => state.currency.language);
+  const wallets = useAppSelector((state) => state.wallets);
+  const transactions = useAppSelector((state) => state.transactions);
   const transaction = transactions[transactionId];
 
   if (!transaction) {

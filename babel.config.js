@@ -7,6 +7,6 @@ const MODULE_RESOLVER = [
 ];
 
 module.exports = {
+  presets: ['module:@react-native/babel-preset'],
   plugins: [MODULE_RESOLVER],
-  presets: ['module:metro-react-native-babel-preset'],
 };

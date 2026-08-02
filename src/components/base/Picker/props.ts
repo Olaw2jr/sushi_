@@ -13,8 +13,8 @@ export interface PickerPrivateProps {
   onSelect?: (value: string | null) => void;
   selectedValue?: string;
   label?: string;
-  renderLabel?: () => React.ReactFragment;
-  renderActionButton?: (onPress: () => void) => React.ReactFragment;
+  renderLabel?: () => React.ReactNode;
+  renderActionButton?: (onPress: () => void) => React.ReactNode;
   placeholder?: string;
 }
 

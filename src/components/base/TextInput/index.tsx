@@ -7,14 +7,13 @@ import {
 
 import TextInputView from './view';
 import Text from 'components/base/Text';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { useAppSelector } from 'store';
 
 const TextInput = (
   props: Omit<TextInputPrivateProps, 'label' | 'renderLabel'> & TextInputProps,
 ) => {
   const { translationKey, ...textInputProps } = props;
-  const theme = useSelector((state: RootState) => state.theme);
+  const theme = useAppSelector((state) => state.theme);
   const { styles } = useStyles(theme);
   return (
     <TextInputView

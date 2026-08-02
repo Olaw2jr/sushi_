@@ -1,6 +1,6 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from 'store';
 import {
   createTransactionAction,
   CreateTransactionInput,
@@ -14,8 +14,8 @@ import CreateTransactionView from './view';
 
 const CreateTransactionContainer = (props: CreateTransactionPublicProps) => {
   const dispatch = useDispatch();
-  const wallets = useSelector((state: RootState) => state.wallets);
-  const transactions = useSelector((state: RootState) => state.transactions);
+  const wallets = useAppSelector((state) => state.wallets);
+  const transactions = useAppSelector((state) => state.transactions);
   const createTransaction = (payload: CreateTransactionInput) => {
     // TODO: Improve validation structure
     const isTransfer = payload.category.toUpperCase() === 'TRANSFER';

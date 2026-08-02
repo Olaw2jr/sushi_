@@ -1,15 +1,14 @@
 jest.mock('@react-native-async-storage/async-storage', () =>
-  require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
+  require('@react-native-async-storage/async-storage/jest'),
 );
 
 import createAppStore from './index';
 import { createWalletAction } from './wallets';
 
 describe('store', () => {
-  test('creates a store, persistor, and runSaga with the expected initial shape', async () => {
-    const { store, persistor, runSaga } = createAppStore();
+  test('creates a store and persistor with the expected initial shape', async () => {
+    const { store, persistor } = createAppStore();
 
-    expect(typeof runSaga).toBe('function');
     expect(typeof persistor.purge).toBe('function');
 
     const state = store.getState();

@@ -4,16 +4,15 @@ import { PickerPrivateProps, PickerProps } from './props';
 
 import PickerView from './view';
 import Text from '../Text';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { useAppSelector } from 'store';
 import { TRANSLATIONS } from 'constants/translations';
 
 const Picker = (
   props: Omit<PickerPrivateProps, 'label' | 'renderLabel'> & PickerProps,
 ) => {
   const { translationKey, ...pickerProps } = props;
-  const theme = useSelector((state: RootState) => state.theme);
-  const language = useSelector((state: RootState) => state.language.selected);
+  const theme = useAppSelector((state) => state.theme);
+  const language = useAppSelector((state) => state.language.selected);
   const { styles } = useStyles(theme);
   return (
     <PickerView

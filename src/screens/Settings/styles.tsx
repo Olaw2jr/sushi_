@@ -1,10 +1,9 @@
 import { StyleSheet } from 'react-native';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { useAppSelector } from 'store';
 import { getGlobalStyles, COLORS } from 'theme';
 
 const useStyles = () => {
-  const theme = useSelector((state: RootState) => state.theme);
+  const theme = useAppSelector((state) => state.theme);
   const colors = COLORS[theme.base];
   const STYLES = getGlobalStyles(theme.base);
   const styles = StyleSheet.create({

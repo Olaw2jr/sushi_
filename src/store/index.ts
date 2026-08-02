@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { useSelector } from 'react-redux';
 import {
   persistStore,
   persistReducer,
@@ -12,7 +13,6 @@ import {
   createMigrate,
   MigrationManifest,
 } from 'redux-persist';
-import createSagaMiddleware from 'redux-saga';
 
 import themeReducer from './theme';
 import walletsReducer from './wallets';
@@ -33,6 +33,10 @@ const rootReducer = combineReducers({
 
 export type RootState = ReturnType<typeof rootReducer>;
 
+// Typed useSelector, replacing the useSelector((state: RootState) => ...)
+// pattern that was re-annotated at every call site.
+export const useAppSelector = useSelector.withTypes<RootState>();
+
 const persistConfig = {
   key: 'root',
   version: 2,
@@ -46,8 +50,6 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export default () => {
-  const sagaMiddleware = createSagaMiddleware();
-  const { run: runSaga } = sagaMiddleware;
   const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
@@ -56,8 +58,8 @@ export default () => {
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
-      }).concat(sagaMiddleware),
+      }),
   });
   const persistor = persistStore(store);
-  return { store, persistor, runSaga };
+  return { store, persistor };
 };
