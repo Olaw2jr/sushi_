@@ -6,9 +6,9 @@ import Text from 'components/base/Text/view';
 import { COLORS } from 'theme';
 
 const Info = (props: InfoProps) => {
-  const { containerStyle = {}, theme, label } = props;
+  const { containerStyle = {}, theme, label, status } = props;
 
-  const { styles, colors } = useStyles(theme);
+  const { styles, colors } = useStyles(theme, status);
   return (
     <View style={[styles.container, containerStyle]}>
       <Text

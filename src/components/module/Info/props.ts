@@ -5,4 +5,5 @@ export interface InfoProps {
   containerStyle?: ViewStyle;
   theme?: Theme;
   label?: string;
+  status?: 'positive' | 'negative';
 }
