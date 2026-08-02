@@ -67,7 +67,6 @@ const ca_CA: Translation = {
   THEME: 'Tema',
   THEME_LIGHT: 'Clar',
   THEME_DARK: 'Fosc',
-  THEME_WASABI: 'Wasabi',
 
   // Insights
   INSIGHTS: 'Insights',

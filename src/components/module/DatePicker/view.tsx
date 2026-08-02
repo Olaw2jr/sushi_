@@ -105,7 +105,6 @@ const DatePicker = (props: DatePickerPrivateProps) => {
                   selectedDotColor: colors.PRIMARY,
                   monthTextColor: colors.PRIMARY_TEXT,
                   arrowColor: colors.PRIMARY,
-                  textMonthFontFamily: 'Heebo-Medium',
                 }}
                 markedDates={{
                   ...markedDates,

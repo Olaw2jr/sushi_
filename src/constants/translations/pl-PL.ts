@@ -62,7 +62,6 @@ const pl_PL = {
   THEME: 'Motyw',
   THEME_LIGHT: 'Jasny',
   THEME_DARK: 'Ciemny',
-  THEME_WASABI: 'Wasabi',
 
   // Insights
   INSIGHTS: 'Analiza',

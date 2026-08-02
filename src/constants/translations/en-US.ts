@@ -63,7 +63,6 @@ const en_US = {
   THEME: 'Theme',
   THEME_LIGHT: 'Light',
   THEME_DARK: 'Dark',
-  THEME_WASABI: 'Wasabi',
 
   // Insights
   INSIGHTS: 'Insights',

@@ -15,15 +15,16 @@ const useStyles = (theme: Theme = DEFAULT_THEME, props: ChipProps) => {
       justifyContent: 'center',
       alignItems: 'center',
       borderWidth: 1,
-      borderColor: props.selected ? colors.PRIMARY : colors.AREA_HIGHLIGHT,
-      backgroundColor: colors.AREA_HIGHLIGHT,
+      borderColor: props.selected ? colors.PRIMARY : colors.DIVIDER,
+      backgroundColor: 'transparent',
       borderRadius: 16,
       paddingVertical: 4,
       paddingHorizontal: 8,
     },
     text: {
       marginLeft: props.icon ? 8 : 0,
-      color: props.selected ? colors.PRIMARY_TEXT : colors.SECONDARY_TEXT,
+      fontWeight: props.selected ? '600' : '400',
+      color: props.selected ? colors.PRIMARY : colors.SECONDARY_TEXT,
     },
   });
 

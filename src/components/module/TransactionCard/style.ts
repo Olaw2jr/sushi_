@@ -8,9 +8,9 @@ const useStyles = (theme: Theme = DEFAULT_THEME) => {
   // const STYLES = getGlobalStyles(theme.base);
   const styles = StyleSheet.create({
     container: {
-      padding: 16,
-      borderRadius: 10,
-      backgroundColor: colors.AREA_HIGHLIGHT,
+      paddingVertical: 13,
+      borderBottomWidth: 1,
+      borderBottomColor: colors.DIVIDER,
       flexDirection: 'row',
       alignItems: 'flex-start',
     },

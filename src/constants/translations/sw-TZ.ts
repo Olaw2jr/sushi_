@@ -66,7 +66,6 @@ const sw_TZ: Translation = {
   THEME: 'Mandhari',
   THEME_LIGHT: 'Angavu',
   THEME_DARK: 'Giza',
-  THEME_WASABI: 'Wasabi',
 
   // Insights
   INSIGHTS: 'Tathmini',
