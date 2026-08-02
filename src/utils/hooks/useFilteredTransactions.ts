@@ -1,7 +1,6 @@
 import { endOfDay, isWithinInterval, startOfDay } from 'date-fns';
 import { allPass, groupBy, partial, reverse, sortBy } from 'ramda';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { useAppSelector } from 'store';
 import { Filters } from 'store/filters';
 import { Transaction } from 'store/transactions';
 import { formatDate } from 'utils/formatDate';
@@ -55,8 +54,8 @@ const isTransactionTypeMatch = (filter: Filters, t: Transaction) => {
 
 export type UseFilteredTransactionsInput = Partial<Filters> & {};
 const useFilteredTransactions = (input?: UseFilteredTransactionsInput) => {
-  const transactions = useSelector((state: RootState) => state.transactions);
-  const globalFilters = useSelector((state: RootState) => state.filters);
+  const transactions = useAppSelector((state) => state.transactions);
+  const globalFilters = useAppSelector((state) => state.filters);
   const filters = {
     ...globalFilters,
     ...(input || {}),
@@ -84,9 +83,18 @@ const useFilteredTransactions = (input?: UseFilteredTransactionsInput) => {
     formatDate(transaction.paidAt, 'MMMM d yyyy'),
   );
 
-  const dailyFilteredTransactions = Object.entries(
-    groupByDate(filteredTransactions),
-  ).map(([day, data]) => ({ day, data }));
+  // Ramda's groupBy types its return as Partial<Record<string, Transaction[]>>
+  // to account for arbitrary key access, but Object.entries only ever
+  // iterates keys groupBy actually populated with a real array — so this
+  // cast reflects the true runtime guarantee instead of introducing an
+  // untestable `data ?? []` branch for a case that can't happen.
+  const groupedByDate = groupByDate(filteredTransactions) as Record<
+    string,
+    Transaction[]
+  >;
+  const dailyFilteredTransactions = Object.entries(groupedByDate).map(
+    ([day, data]) => ({ day, data }),
+  );
 
   const sortByDay = sortBy(
     (countedWalletId: typeof dailyFilteredTransactions[number]) =>

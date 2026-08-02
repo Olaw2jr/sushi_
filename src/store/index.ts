@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { useSelector } from 'react-redux';
 import {
   persistStore,
   persistReducer,
@@ -31,6 +32,10 @@ const rootReducer = combineReducers({
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
+
+// Typed useSelector, replacing the useSelector((state: RootState) => ...)
+// pattern that was re-annotated at every call site.
+export const useAppSelector = useSelector.withTypes<RootState>();
 
 const persistConfig = {
   key: 'root',

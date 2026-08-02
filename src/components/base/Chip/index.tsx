@@ -1,11 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { useAppSelector } from 'store';
 import { ChipProps } from './props';
 import ChipView from './view';
 
 export const Chip = (props: ChipProps) => {
-  const theme = useSelector((state: RootState) => state.theme);
+  const theme = useAppSelector((state) => state.theme);
   return <ChipView theme={theme} {...props} />;
 };
 

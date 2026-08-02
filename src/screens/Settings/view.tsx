@@ -4,6 +4,7 @@ import { ScrollView, View, StatusBar, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import useStyles from './styles';
 import { SettingsProps } from './props';
+import { Language } from 'store/language';
 import { ChevronLeft } from 'lucide-react-native';
 import Picker from 'components/base/Picker';
 import { TRANSLATIONS } from 'constants/translations';
@@ -75,7 +76,7 @@ const SettingsView = (props: SettingsProps) => {
             // containerStyle={styles.inputContainer}
             translationKey="CURRENCY"
             selectedValue={currencyLanguage}
-            onSelect={(value) => setCurrencyLanguage(value)}
+            onSelect={(value) => value && setCurrencyLanguage(value)}
             options={currencyLanguageOptions}
             theme={theme}
           />
@@ -84,7 +85,9 @@ const SettingsView = (props: SettingsProps) => {
             containerStyle={styles.inputContainer}
             translationKey="LANGUAGE"
             selectedValue={selectedLanguage}
-            onSelect={(value) => setSelectedLanguage(value)}
+            onSelect={(value) =>
+              value && setSelectedLanguage(value as Language['selected'])
+            }
             options={LANGUAGE_OPTIONS}
             theme={theme}
           />

@@ -9,6 +9,6 @@ export const formatCurrency = (number: number, format?: Format) => {
   }
   return numbro(number).formatCurrency({
     mantissa: 2,
-    ...omit(['language'], format),
+    ...omit(['language'], format || {}),
   });
 };

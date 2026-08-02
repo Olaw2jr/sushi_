@@ -7,7 +7,9 @@ export type TransactionRecord = Transaction & {
   destinationWalletInitialAmount: number | null;
 };
 
-export const recordToCSVString = (records: TransactionRecord[]) => {
+export const recordToCSVString = <T extends Record<string, unknown>>(
+  records: T[],
+) => {
   if (records.length > 0) {
     const headerString = `${Object.keys(records[0]).join(',')}\n`;
     const rowString = records

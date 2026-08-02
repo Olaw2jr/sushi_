@@ -5,8 +5,7 @@ import {
 } from '../../module/AlertModal/props';
 
 import AlertModalView from '../../module/AlertModal/view';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { useAppSelector } from 'store';
 import { TRANSLATIONS } from 'constants/translations';
 
 const AlertModal = (
@@ -21,8 +20,8 @@ const AlertModal = (
     actions,
     ...otherProps
   } = props;
-  const theme = useSelector((state: RootState) => state.theme);
-  const language = useSelector((state: RootState) => state.language.selected);
+  const theme = useAppSelector((state) => state.theme);
+  const language = useAppSelector((state) => state.language.selected);
   const translatedDescription =
     TRANSLATIONS[language][descriptionTranslationKey];
   const updatedDescription = Object.keys(descriptionReplacementRecord).reduce(

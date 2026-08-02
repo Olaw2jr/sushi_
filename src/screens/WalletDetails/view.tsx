@@ -5,10 +5,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import useStyles from './styles';
 import { WalletDetailsProps } from './props';
 import { ChevronLeft, Trash2, Pencil } from 'lucide-react-native';
-import { Transaction } from 'store/transactions';
-import TransactionCard from 'components/module/TransactionCard';
+import { createListItemRenderer } from 'components/module/TransactionCard';
 import AlertModal from 'components/module/AlertModal';
 import { formatCurrency } from 'utils/formatCurrency';
+import { deriveWalletBalance } from 'utils/deriveWalletBalance';
 import TextView from 'components/base/Text/view';
 import useFilteredTransactions from 'utils/hooks/useFilteredTransactions';
 import FilterButton from 'components/module/FilterButton';
@@ -28,74 +28,20 @@ const WalletDetailsView = (props: WalletDetailsProps) => {
       transaction.destinationWalletId === wallet.id,
   );
 
-  const balanceBreakdown = walletTransactions.reduce(
-    (accum, transaction) => {
-      if (transaction.destinationWalletId === wallet.id) {
-        // reverse calculation because it is a transfer
-        if (transaction.amount < 0) {
-          return {
-            income: accum.income + Math.abs(transaction.amount),
-            expenses: accum.expenses,
-          };
-        } else if (transaction.amount > 0) {
-          return {
-            income: accum.income,
-            expenses: accum.expenses + Math.abs(transaction.amount),
-          };
-        }
-      } else {
-        // normal calculation
-        if (transaction.amount > 0) {
-          return {
-            income: accum.income + Math.abs(transaction.amount),
-            expenses: accum.expenses,
-          };
-        } else if (transaction.amount < 0) {
-          return {
-            income: accum.income,
-            expenses: accum.expenses + Math.abs(transaction.amount),
-          };
-        }
-      }
-
-      return {
-        income: accum.income,
-        expenses: accum.expenses,
-      };
-    },
-    {
-      income: 0,
-      expenses: 0,
-    },
+  const { balance: currentBalance, ...balanceBreakdown } = deriveWalletBalance(
+    wallet.id,
+    wallet.initialAmount,
+    walletTransactions,
   );
 
-  const currentBalance =
-    wallet.initialAmount + balanceBreakdown.income - balanceBreakdown.expenses;
-
-  const renderTransaction = ({ item: transaction }: { item: Transaction }) => {
-    const sourceWallet = wallets[transaction.sourceWalletId];
-    const destinationWallet = transaction.destinationWalletId
-      ? wallets[transaction.destinationWalletId]
-      : null;
-    return (
-      <TransactionCard
-        containerStyle={styles.transactionCard}
-        key={transaction.id}
-        category={transaction.category}
-        amount={transaction.amount}
-        sourceWallet={sourceWallet.label}
-        destinationWallet={destinationWallet?.label}
-        paidAt={transaction.paidAt}
-        onPress={() =>
-          navigation.navigate('TRANSACTION_DETAILS', {
-            transactionId: transaction.id,
-          })
-        }
-        theme={theme}
-        language={language}
-      />
-    );
-  };
+  const renderTransaction = createListItemRenderer({
+    wallets,
+    theme,
+    language,
+    containerStyle: styles.transactionCard,
+    onPressItem: (transactionId) =>
+      navigation.navigate('TRANSACTION_DETAILS', { transactionId }),
+  });
 
   const [showDelete, setShowDelete] = useState(false);
 

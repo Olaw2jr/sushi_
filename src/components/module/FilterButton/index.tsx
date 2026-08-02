@@ -1,8 +1,7 @@
 import { SlidersHorizontal } from 'lucide-react-native';
 import React from 'react';
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { useAppSelector } from 'store';
 import { COLORS } from 'theme';
 
 export type FilterButtonProps = {
@@ -10,9 +9,9 @@ export type FilterButtonProps = {
   onPress?: () => void;
 };
 const FilterButton = (props: FilterButtonProps) => {
-  const theme = useSelector((state: RootState) => state.theme);
+  const theme = useAppSelector((state) => state.theme);
   const colors = COLORS[theme.base];
-  const filters = useSelector((state: RootState) => state.filters);
+  const filters = useAppSelector((state) => state.filters);
   const hasActiveFilter =
     filters.accountId !== null ||
     filters.startDate !== null ||

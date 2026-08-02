@@ -5,8 +5,7 @@ import {
 } from '../../module/DatePicker/props';
 
 import DatePickerView from './view';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { useAppSelector } from 'store';
 import { TRANSLATIONS } from 'constants/translations';
 
 const DatePicker = (
@@ -15,8 +14,8 @@ const DatePicker = (
 ) => {
   const { labelTranslationKey, defaultLabelTranslationKey, ...textInputProps } =
     props;
-  const theme = useSelector((state: RootState) => state.theme);
-  const language = useSelector((state: RootState) => state.language.selected);
+  const theme = useAppSelector((state) => state.theme);
+  const language = useAppSelector((state) => state.language.selected);
   return (
     <DatePickerView
       theme={theme}

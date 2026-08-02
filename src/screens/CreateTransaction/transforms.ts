@@ -30,7 +30,11 @@ export const getCategorySuggestions = (transactions: Transactions) => {
     (transaction: Transaction) => transaction.category,
   );
 
-  const groupedByCategoryTransactions = groupByCategoryName(transactionsArray);
+  // groupBy types its return as Partial<Record<K, T[]>>, but Object.keys
+  // only ever returns keys it actually populated with a real array.
+  const groupedByCategoryTransactions = groupByCategoryName(
+    transactionsArray,
+  ) as Record<string, Transaction[]>;
 
   const countedCategoryArray = Object.keys(groupedByCategoryTransactions).map(
     (category) => {
@@ -65,7 +69,9 @@ export const getWalletSuggestions = (transactions: Transactions) => {
     (transaction: Transaction) => transaction.sourceWalletId,
   );
 
-  const groupedByWalletIdTransactions = groupByWalletId(transactionsArray);
+  const groupedByWalletIdTransactions = groupByWalletId(
+    transactionsArray,
+  ) as Record<string, Transaction[]>;
 
   const countedWalletIdArray = Object.keys(groupedByWalletIdTransactions).map(
     (walletId) => {

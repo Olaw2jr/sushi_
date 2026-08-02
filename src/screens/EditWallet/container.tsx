@@ -1,6 +1,6 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from 'store';
 import { editWalletAction, Wallet } from 'store/wallets';
 
 import { EditWalletPrivateProps, EditWalletPublicProps } from './props';
@@ -10,7 +10,7 @@ const EditWalletContainer = (props: EditWalletPublicProps) => {
   const dispatch = useDispatch();
   const walletId = props.route.params?.walletId || '';
 
-  const wallets = useSelector((state: RootState) => state.wallets);
+  const wallets = useAppSelector((state) => state.wallets);
   const wallet = wallets[walletId];
 
   const editWallet = (payload: Wallet) => {
