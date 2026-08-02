@@ -1,5 +1,6 @@
 const pl_PL = {
   // DASHBOARD
+  HOME: 'Główna',
   ALL: 'Wszystko',
   CREDIT: 'Wydatki',
   DEBIT: 'Przychody',
@@ -65,6 +66,9 @@ const pl_PL = {
 
   // Insights
   INSIGHTS: 'Analiza',
+
+  // Budgets
+  BUDGETS: 'Budżety',
 
   // Filters
   FILTERS: 'Filtry',

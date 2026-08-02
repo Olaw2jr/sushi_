@@ -1,5 +1,6 @@
 const en_US = {
   // DASHBOARD
+  HOME: 'Home',
   ALL: 'All',
   CREDIT: 'Credit',
   DEBIT: 'Debit',
@@ -66,6 +67,9 @@ const en_US = {
 
   // Insights
   INSIGHTS: 'Insights',
+
+  // Budgets
+  BUDGETS: 'Budgets',
 
   // Filters
   FILTERS: 'Filters',

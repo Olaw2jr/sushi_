@@ -1,10 +1,8 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { THEME_OPTION } from 'store/theme';
 import { Language } from 'store/language';
-import { MainStackParamList } from 'types/Route';
+import { TabScreenProps } from 'types/Route';
 
-export interface SettingsPublicProps
-  extends NativeStackScreenProps<MainStackParamList, 'SETTINGS'> {}
+export interface SettingsPublicProps extends TabScreenProps<'SETTINGS'> {}
 
 export interface SettingsPrivateProps {
   baseTheme: string;

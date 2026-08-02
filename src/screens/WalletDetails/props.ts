@@ -1,10 +1,10 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Transactions } from 'store/transactions';
 import { Wallet, Wallets } from 'store/wallets';
-import { MainStackParamList } from 'types/Route';
+import { RootStackParamList } from 'types/Route';
 
 export interface WalletDetailsPublicProps
-  extends NativeStackScreenProps<MainStackParamList, 'WALLET_DETAILS'> {}
+  extends NativeStackScreenProps<RootStackParamList, 'WALLET_DETAILS'> {}
 
 export interface WalletDetailsPrivateProps {
   wallet: Wallet;

@@ -1,7 +1,6 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Transactions } from 'store/transactions';
 import { Wallets } from 'store/wallets';
-import { MainStackParamList } from 'types/Route';
+import { TabScreenProps } from 'types/Route';
 
 export type TransactionFilter = {
   startDate: Date | null;
@@ -11,7 +10,7 @@ export type TransactionFilter = {
 };
 
 export interface TransactionsPublicProps
-  extends NativeStackScreenProps<MainStackParamList, 'TRANSACTIONS'> {}
+  extends TabScreenProps<'TRANSACTIONS'> {}
 
 export interface TransactionsPrivateProps {
   wallets: Wallets;

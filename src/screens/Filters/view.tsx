@@ -12,7 +12,7 @@ import ButtonView from 'components/base/Button/view';
 import Picker from 'components/base/Picker';
 import useTranslationKey from 'utils/hooks/useTranslationKey';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { MainStackParamList } from 'types/Route';
+import { RootStackParamList } from 'types/Route';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'store';
 import { COLORS, getGlobalStyles } from 'theme';
@@ -31,7 +31,7 @@ export const toWalletOptions = (wallets: Wallets) => {
 };
 
 export interface FiltersProps
-  extends NativeStackScreenProps<MainStackParamList, 'FILTERS'> {}
+  extends NativeStackScreenProps<RootStackParamList, 'FILTERS'> {}
 
 const FiltersView = (props: FiltersProps) => {
   const { navigation } = props;

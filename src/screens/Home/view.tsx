@@ -17,10 +17,9 @@ import { formatCurrency } from 'utils/formatCurrency';
 import { deriveWalletBalance } from 'utils/deriveWalletBalance';
 import TextView from 'components/base/Text/view';
 import { Translation } from 'types/Translation';
-import Button from 'components/base/Button';
-import useTranslationKey from 'utils/hooks/useTranslationKey';
 import useFilteredTransactions from 'utils/hooks/useFilteredTransactions';
 import FilterButton from 'components/module/FilterButton';
+import Fab from 'components/module/Fab';
 
 const SubHeader = (props: {
   label: keyof Translation;
@@ -219,14 +218,10 @@ const HomeView = (props: HomeProps) => {
         </View>
         <View style={{ height: 32 }} />
       </ScrollView>
-      <View style={styles.actionsContainer}>
-        <Button
-          outline
-          onPress={() => navigation.navigate('CREATE_TRANSACTION')}
-          translationKey="NEW_TRANSACTION"
-          theme={theme}
-        />
-      </View>
+      <Fab
+        theme={theme}
+        onPress={() => navigation.navigate('CREATE_TRANSACTION')}
+      />
     </SafeAreaView>
   );
 };
