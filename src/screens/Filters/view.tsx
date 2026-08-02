@@ -3,7 +3,7 @@ import Text from 'components/base/Text';
 import { View, StatusBar, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Close, DownLeft, UpRight } from 'components/base/SVG';
+import { X, ArrowDownLeft, ArrowUpRight } from 'lucide-react-native';
 import DatePicker from 'components/module/DatePicker';
 import TextInput from 'components/base/TextInput';
 import Button from 'components/base/Button';
@@ -92,7 +92,7 @@ const FiltersView = (props: FiltersProps) => {
           onPress={() => {
             navigation.goBack();
           }}>
-          <Close fill={colors.PRIMARY_TEXT} width={24} height={24} />
+          <X size={24} color={colors.PRIMARY_TEXT} />
         </TouchableOpacity>
       </View>
       <ScrollView
@@ -171,13 +171,13 @@ const FiltersView = (props: FiltersProps) => {
             label={TEXT_DEBIT}
             selected={transactionType === 'DEBIT'}
             onPress={() => setTransactionType('DEBIT')}
-            icon={<DownLeft fill={colors.POSITIVE} width={16} height={16} />}
+            icon={<ArrowDownLeft size={16} color={colors.POSITIVE} />}
           />
           <Chip
             label={TEXT_CREDIT}
             selected={transactionType === 'CREDIT'}
             onPress={() => setTransactionType('CREDIT')}
-            icon={<UpRight fill={colors.NEGATIVE} width={16} height={16} />}
+            icon={<ArrowUpRight size={16} color={colors.NEGATIVE} />}
           />
         </View>
       </ScrollView>

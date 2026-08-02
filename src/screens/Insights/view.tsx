@@ -12,7 +12,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import useStyles from './styles';
 import { InsightsProps } from './props';
-import { Back } from 'components/base/SVG';
+import { ChevronLeft } from 'lucide-react-native';
 import { Transaction } from 'store/transactions';
 import TextView from 'components/base/Text/view';
 import { formatCurrency } from 'utils/formatCurrency';
@@ -129,7 +129,7 @@ const InsightsView = (props: InsightsProps) => {
           onPress={() => {
             navigation.goBack();
           }}>
-          <Back fill={colors.PRIMARY_TEXT} width={24} height={24} />
+          <ChevronLeft size={24} color={colors.PRIMARY_TEXT} />
         </TouchableOpacity>
         <Text
           containerStyle={styles.headerTitleContainer}

@@ -3,7 +3,6 @@ import { TouchableOpacity, View } from 'react-native';
 import Text from 'components/base/Text/view';
 import useStyles from './style';
 import { TransactionCardProps } from './props';
-import { UpRight, DownLeft, UpDown } from 'components/base/SVG';
 import { formatCurrency } from 'utils/formatCurrency';
 import { formatDate } from 'utils/formatDate';
 

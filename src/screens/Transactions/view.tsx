@@ -4,7 +4,7 @@ import { View, StatusBar, TouchableOpacity, SectionList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import useStyles from './styles';
 import { TransactionsProps } from './props';
-import { Back, Filters } from 'components/base/SVG';
+import { ChevronLeft } from 'lucide-react-native';
 import TransactionCard from 'components/module/TransactionCard';
 import { Transaction } from 'store/transactions';
 import TextView from 'components/base/Text/view';
@@ -73,7 +73,7 @@ const TransactionsView = (props: TransactionsProps) => {
           onPress={() => {
             navigation.goBack();
           }}>
-          <Back fill={colors.PRIMARY_TEXT} width={24} height={24} />
+          <ChevronLeft size={24} color={colors.PRIMARY_TEXT} />
         </TouchableOpacity>
         <Text
           containerStyle={styles.headerTitleContainer}

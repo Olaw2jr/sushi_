@@ -4,7 +4,7 @@ import { ScrollView, View, StatusBar, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import useStyles from './styles';
 import { SettingsProps } from './props';
-import { Back } from 'components/base/SVG';
+import { ChevronLeft } from 'lucide-react-native';
 import Picker from 'components/base/Picker';
 import { TRANSLATIONS } from 'constants/translations';
 import Text from 'components/base/Text';
@@ -60,7 +60,7 @@ const SettingsView = (props: SettingsProps) => {
           onPress={() => {
             navigation.goBack();
           }}>
-          <Back fill={colors.PRIMARY_TEXT} width={24} height={24} />
+          <ChevronLeft size={24} color={colors.PRIMARY_TEXT} />
         </TouchableOpacity>
         <Text
           containerStyle={styles.headerTitleContainer}

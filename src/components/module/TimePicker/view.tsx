@@ -9,7 +9,7 @@ import {
 import Text from 'components/base/Text/view';
 import useStyles from './style';
 import { TimePickerPrivateProps } from './props';
-import { Down, Close } from 'components/base/SVG';
+import { ChevronDown, X } from 'lucide-react-native';
 import format from 'date-fns/format';
 
 const HOURS = [...new Array(24)].map((v, i) => `${i}`.padStart(2, '0'));
@@ -90,7 +90,7 @@ const TimePicker = (props: TimePickerPrivateProps) => {
           <Text variant="body" style={styles.value}>
             {displayTime || ''}
           </Text>
-          <Down width={16} height={16} fill={colors.BORDER} />
+          <ChevronDown size={16} color={colors.BORDER} />
         </TouchableOpacity>
       </View>
 
@@ -109,7 +109,7 @@ const TimePicker = (props: TimePickerPrivateProps) => {
                 onPress={() => {
                   setShowModal(false);
                 }}>
-                <Close fill={colors.PRIMARY_TEXT} width={24} height={24} />
+                <X size={24} color={colors.PRIMARY_TEXT} />
               </TouchableOpacity>
             </View>
             <View key="spacer-0" style={styles.timePickerContainer}>
