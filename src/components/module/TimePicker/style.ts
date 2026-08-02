@@ -3,6 +3,10 @@ import { StyleSheet } from 'react-native';
 import { Theme } from 'store/theme';
 import { COLORS } from 'theme';
 
+// Single source of truth for the hour/minute wheel's row height — also
+// used by view.tsx's scroll-offset math, which must stay in sync with it.
+export const TIME_PICKER_ROW_HEIGHT = 48;
+
 const useStyles = (theme: Theme = DEFAULT_THEME) => {
   const colors = COLORS[theme.base];
   // const STYLES = getGlobalStyles(theme.base);
@@ -78,13 +82,15 @@ const useStyles = (theme: Theme = DEFAULT_THEME) => {
     },
     timePickerLabel: {
       fontSize: 32,
+      lineHeight: TIME_PICKER_ROW_HEIGHT,
       color: colors.PRIMARY_TEXT,
-      height: 42,
+      height: TIME_PICKER_ROW_HEIGHT,
     },
     timePickerLabelActive: {
       fontSize: 32,
+      lineHeight: TIME_PICKER_ROW_HEIGHT,
       color: colors.PRIMARY,
-      height: 42,
+      height: TIME_PICKER_ROW_HEIGHT,
     },
     timePickerSeparator: {
       justifyContent: 'center',
@@ -92,7 +98,7 @@ const useStyles = (theme: Theme = DEFAULT_THEME) => {
       paddingHorizontal: 4,
     },
     spacer: {
-      height: 42,
+      height: TIME_PICKER_ROW_HEIGHT,
     },
   });
 
