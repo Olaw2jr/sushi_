@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { groupBy, sortBy } from 'ramda';
+import { groupBy, reverse, sortBy } from 'ramda';
 import Text from 'components/base/Text';
 import {
   View,
@@ -52,12 +52,11 @@ const InsightsView = (props: InsightsProps) => {
     }
   };
 
-  const sortByDay = sortBy(
-    (countedWalletId: typeof dailyFilteredTransactions[number]) =>
-      new Date(countedWalletId.day).getTime(),
-  );
-
-  const dailyTransactionAmountLineData = sortByDay(
+  // dailyFilteredTransactions is already sorted by paidAt, descending
+  // (most recent day first); the chart's x-axis wants ascending
+  // (oldest-to-newest), so just reverse the hook's existing order
+  // instead of re-deriving it by re-parsing the formatted day strings.
+  const dailyTransactionAmountLineData = reverse(
     dailyFilteredTransactions,
   ).map(({ day, data: currentTransactions }, index) => {
     const incoming = currentTransactions.reduce((accum, current) => {
