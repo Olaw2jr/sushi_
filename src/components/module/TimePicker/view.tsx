@@ -7,7 +7,7 @@ import {
   FlatList,
 } from 'react-native';
 import Text from 'components/base/Text/view';
-import useStyles from './style';
+import useStyles, { TIME_PICKER_ROW_HEIGHT } from './style';
 import { TimePickerPrivateProps } from './props';
 import { ChevronDown, X } from 'lucide-react-native';
 import { format } from 'date-fns';
@@ -15,10 +15,7 @@ import { format } from 'date-fns';
 const HOURS = [...new Array(24)].map((v, i) => `${i}`.padStart(2, '0'));
 const MINUTES = [...new Array(60)].map((v, i) => `${i}`.padStart(2, '0'));
 
-const calculateScrollOffset = (index: number) => {
-  const fixedElementHeight = 42;
-  return index * fixedElementHeight;
-};
+const calculateScrollOffset = (index: number) => index * TIME_PICKER_ROW_HEIGHT;
 
 const TimePicker = (props: TimePickerPrivateProps) => {
   const {
