@@ -12,7 +12,6 @@ import {
   createMigrate,
   MigrationManifest,
 } from 'redux-persist';
-import createSagaMiddleware from 'redux-saga';
 
 import themeReducer from './theme';
 import walletsReducer from './wallets';
@@ -46,8 +45,6 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export default () => {
-  const sagaMiddleware = createSagaMiddleware();
-  const { run: runSaga } = sagaMiddleware;
   const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
@@ -56,8 +53,8 @@ export default () => {
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
-      }).concat(sagaMiddleware),
+      }),
   });
   const persistor = persistStore(store);
-  return { store, persistor, runSaga };
+  return { store, persistor };
 };

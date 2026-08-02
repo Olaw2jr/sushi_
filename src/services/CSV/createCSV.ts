@@ -1,9 +1,9 @@
-import RNFetchBlob from 'rn-fetch-blob';
+import ReactNativeBlobUtil from 'react-native-blob-util';
 
 // Default target directory
-const targetDirectory = `${RNFetchBlob.fs.dirs.DownloadDir}`;
+const targetDirectory = `${ReactNativeBlobUtil.fs.dirs.DownloadDir}`;
 
 export const createCSV = (fileName: string, csvString: string) => {
   const pathToWrite = `${targetDirectory}/sushi_${fileName}.csv`;
-  return RNFetchBlob.fs.createFile(pathToWrite, csvString, 'utf8');
+  return ReactNativeBlobUtil.fs.createFile(pathToWrite, csvString, 'utf8');
 };

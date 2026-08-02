@@ -21,6 +21,10 @@ const rootReducer = combineReducers({
 
 // Lightweight, non-persisted store for hook tests only — mirrors the slice
 // shape wired up in store/index.ts without needing AsyncStorage/redux-persist.
+//
+// renderHook is async as of @testing-library/react-native v14 (it returns
+// Promise<RenderHookResult>), so this helper is async too — callers must
+// await it.
 export const renderHookWithStore = <Result,>(
   callback: () => Result,
   preloadedState?: Partial<RootState>,

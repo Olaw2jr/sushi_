@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import produce from 'immer';
+import { produce } from 'immer';
 import { v1 as uuidv1 } from 'uuid';
 import { deleteWalletAction } from './wallets';
 
