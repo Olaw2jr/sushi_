@@ -10,12 +10,13 @@
 		0C80B921A6F3F58F76C31292 /* libPods-sushi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-sushi.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		FF6DB533B05846BCB7AA2DA9 /* Heebo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 996459062C4045058BABB4C1 /* Heebo-Medium.ttf */; };
 		F940B65E27B944B28A302446 /* Heebo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 027057643E6C411599222AB5 /* Heebo-Light.ttf */; };
 		F49564DB8885482BBD38B4CF /* Heebo-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D3A862B30AB415BB86A7F65 /* Heebo-SemiBold.ttf */; };
 		33C34EB396E14E72804F200E /* Heebo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 697C7221A4DF44298FDDCABF /* Heebo-Regular.ttf */; };
 		18134534309F4849A675CFEC /* Heebo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BB0811CE0DC4750B4FC1AFD /* Heebo-Bold.ttf */; };
+		CE5971EEF52C40398AB7A618 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C10EF72A049F451F9ABFBF69 /* BootSplash.storyboard */; };
+		DDFF5E95BE8640C09EFB3426 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA53F8A1AAF7479AA36615F0 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,13 +28,14 @@
 		5709B34CF0A7D63546082F79 /* Pods-sushi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sushi.release.xcconfig"; path = "Target Support Files/Pods-sushi/Pods-sushi.release.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-sushi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sushi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = sushi/AppDelegate.swift; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = sushi/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		996459062C4045058BABB4C1 /* Heebo-Medium.ttf */ = {isa = PBXFileReference; name = "Heebo-Medium.ttf"; path = "../src/assets/fonts/Heebo-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		027057643E6C411599222AB5 /* Heebo-Light.ttf */ = {isa = PBXFileReference; name = "Heebo-Light.ttf"; path = "../src/assets/fonts/Heebo-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		8D3A862B30AB415BB86A7F65 /* Heebo-SemiBold.ttf */ = {isa = PBXFileReference; name = "Heebo-SemiBold.ttf"; path = "../src/assets/fonts/Heebo-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		697C7221A4DF44298FDDCABF /* Heebo-Regular.ttf */ = {isa = PBXFileReference; name = "Heebo-Regular.ttf"; path = "../src/assets/fonts/Heebo-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		9BB0811CE0DC4750B4FC1AFD /* Heebo-Bold.ttf */ = {isa = PBXFileReference; name = "Heebo-Bold.ttf"; path = "../src/assets/fonts/Heebo-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C10EF72A049F451F9ABFBF69 /* BootSplash.storyboard */ = {isa = PBXFileReference; name = "BootSplash.storyboard"; path = "sushi/BootSplash.storyboard"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DA53F8A1AAF7479AA36615F0 /* Colors.xcassets */ = {isa = PBXFileReference; name = "Colors.xcassets"; path = "sushi/Colors.xcassets"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = folder.assetcatalog; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +56,9 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				761780EC2CA45674006654EE /* AppDelegate.swift */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
+				C10EF72A049F451F9ABFBF69 /* BootSplash.storyboard */,
+				DA53F8A1AAF7479AA36615F0 /* Colors.xcassets */,
 			);
 			name = sushi;
 			sourceTree = "<group>";
@@ -181,13 +184,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				FF6DB533B05846BCB7AA2DA9 /* Heebo-Medium.ttf in Resources */,
 				F940B65E27B944B28A302446 /* Heebo-Light.ttf in Resources */,
 				F49564DB8885482BBD38B4CF /* Heebo-SemiBold.ttf in Resources */,
 				33C34EB396E14E72804F200E /* Heebo-Regular.ttf in Resources */,
 				18134534309F4849A675CFEC /* Heebo-Bold.ttf in Resources */,
+				CE5971EEF52C40398AB7A618 /* BootSplash.storyboard in Resources */,
+				DDFF5E95BE8640C09EFB3426 /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
