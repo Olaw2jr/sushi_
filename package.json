@@ -7,7 +7,7 @@
     "android:storybook": "ENVFILE=.env.storybook npm run android",
     "ios": "react-native run-ios --simulator=\"iPhone 14\"",
     "start": "react-native start",
-    "test": "jest ./*.unit.test.*",
+    "test": "jest ./*.unit.test.* --coverage",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "generate": "plop",
     "android:debug": "npm run android:bundle-js && npm run android:build-debug-apk",
@@ -44,6 +44,7 @@
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
+    "@testing-library/react-native": "^10.1.1",
     "@types/jest": "^26.0.23",
     "@types/ramda": "^0.27.45",
     "@types/react-native": "^0.64.5",
@@ -72,6 +73,21 @@
       "jsx",
       "json",
       "node"
-    ]
+    ],
+    "collectCoverageFrom": [
+      "src/store/**/*.{ts,tsx}",
+      "src/utils/**/*.{ts,tsx}",
+      "src/services/**/*.{ts,tsx}",
+      "!**/*.test.{ts,tsx}",
+      "!src/utils/testUtils/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
   }
 }
