@@ -2,7 +2,9 @@
   "extends": "@react-native/typescript-config",
   "compilerOptions": {
     "types": ["jest"],
-    "baseUrl": "./src"
+    "paths": {
+      "*": ["./src/*"]
+    }
   },
   "include": ["src", "index.js"],
   "exclude": ["node_modules", "ios", "android", "storybook"]
